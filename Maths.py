@@ -1,3 +1,4 @@
+import math
 def GeneratePrimesUnderN(n):
 	"""Input n >= 6, Returns a list of primes, 2 <= p < n."""
 
@@ -14,7 +15,7 @@ def IsPrime(n):
 	"""Input n, returns True if n is prime and False if not."""
 
 	if n > 1:
-		for i in range(2, n):
+		for i in range(2,math.sqrt(n)):
 			if (n % i) == 0:
 				return False
 		else:
