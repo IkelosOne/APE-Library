@@ -1,14 +1,16 @@
-#PEA Functions
+#APE Functions
+#Made as a collection of useful functions by Arun - Pablo - Elia
+
 def IsPrime(n):
-    """Input n, returns True if n is prime and False if not."""
+	"""Input n, returns True if n is prime and False if not."""
 
-    if n > 1:
-       for i in range(2, n):
-           if (n % i) == 0:
-               return False
-       else:
-           return True
-
+	if n > 1:
+		for i in range(2,math.sqrt(n)):
+			if (n % i) == 0:
+				return False
+		else:
+			return True
+###############################################################
 def makeBool(string):
     if string=="False":
         return False
@@ -16,9 +18,9 @@ def makeBool(string):
         return True
     else:
         print("Impossible")
-
+###############################################################
 def commaNumber(number):
-    #Takes number and adds commas every 3 digits
+    #Takes number and adds commas every 3 digits. Returns string
     number=str(number)
     numList=[]
     seperates=DIV(len(number),3)
@@ -33,17 +35,7 @@ def commaNumber(number):
     while result[0]==",":#Gets rid of commas at start
         result=result[1:]
     return result
-
-def IsPrime(n):
-	"""Input n, returns True if n is prime and False if not."""
-
-	if n > 1:
-		for i in range(2, n):
-			if (n % i) == 0:
-				return False
-		else:
-			return True
-
+###############################################################
 def IsPrimeLightspeed(n): #https://www.rookieslab.com/posts/fastest-way-to-check-if-a-number-is-prime-or-not
     """
     Assumes that n is a positive natural number
@@ -64,5 +56,12 @@ def IsPrimeLightspeed(n): #https://www.rookieslab.com/posts/fastest-way-to-check
     # If we did not find any factor in the above loop,
     # then n is a prime number
     return True
-
-
+###############################################################
+def ReverseIt(inp): #Takes string or int and return reversed version as string
+    inp = str(inp)
+    revNum = ""
+    for x in range(len(inp)):
+        digit = inp[len(inp)-x-1]
+        revNum += digit
+    return revNum
+###############################################################
