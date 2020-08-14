@@ -1,5 +1,12 @@
 #APE Functions
 #Made as a collection of useful functions by Arun - Pablo - Elia
+"""
+To import:
+
+import sys
+sys.path.append("E\Example\APE-Library")
+import APEFunctions
+"""
 
 def IsPrime(n):
 	"""Input n, returns True if n is prime and False if not."""
