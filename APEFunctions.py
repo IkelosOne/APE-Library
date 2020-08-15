@@ -8,15 +8,17 @@ sys.path.append("E\Example\APE-Library")
 import APEFunctions
 """
 
-def IsPrime(n):
-	"""Input n, returns True if n is prime and False if not."""
+#A good number to test for primes is 9843498239573897
 
-	if n > 1:
-		for i in range(2,math.sqrt(n)):
-			if (n % i) == 0:
-				return False
-		else:
-			return True
+def IsPrime(n):
+    """Input n, returns True if n is prime and False if not."""
+    if n > 1:
+        x = 2
+        while x*x < n:
+            if (n % x) == 0:
+                return False
+            x += 1
+    return True
 ###############################################################
 def makeBool(string):
     if string=="False":
@@ -72,3 +74,5 @@ def ReverseIt(inp): #Takes string or int and return reversed version as string
         revNum += digit
     return revNum
 ###############################################################
+
+print(IsPrimeLightspeed(int(input(""))))
