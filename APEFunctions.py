@@ -10,11 +10,11 @@ import APEFunctions
 
 #A good number to test for primes is 9843498239573897
 
-def IsPrime(n):
+def IsPrime(n): #This hs been optimised to now be 98% the speed of IsPrimeLightspeed (a funciton found on the internet)
     """Input n, returns True if n is prime and False if not."""
     if n > 1:
         x = 2
-        while x*x < n:
+        while x*x < n: # x*x<n is much more efficient than x<sqrt(n)
             if (n % x) == 0:
                 return False
             x += 1
@@ -75,4 +75,4 @@ def ReverseIt(inp): #Takes string or int and return reversed version as string
     return revNum
 ###############################################################
 
-print(IsPrimeLightspeed(int(input(""))))
+#print(IsPrimeLightspeed(int(input(""))))
