@@ -8,6 +8,7 @@ sys.path.append("E\Example\APE-Library")
 import APEFunctions
 """
 
+###############################################################
 #A good number to test for primes is 9843498239573897
 
 def IsPrime(n): #This has been optimised to now be 98% the speed of IsPrimeLightspeed (a funciton found on the internet)
