@@ -18,7 +18,9 @@ def IsPrime(n): #This hs been optimised to now be 98% the speed of IsPrimeLights
             if (n % x) == 0:
                 return False
             x += 1
-    return True
+        return True
+    else:
+        return False
 ###############################################################
 def makeBool(string):
     if string=="False":
@@ -74,5 +76,20 @@ def ReverseIt(inp): #Takes string or int and return reversed version as string
         revNum += digit
     return revNum
 ###############################################################
+def IsPalendromic(number):
+    number = str(number)
+    for x in range (len(number)):
+        if number[x] != number[len(number)-x-1]:
+            return False
+    return True
+###############################################################
+def OccurencesInList(item,list1): #Returns the amount of occurences of an item in a list
+    count = 0
+    for x in range(len(list1)):
+        if list1[x] == item:
+            count += 1
+    return count
 
-#print(IsPrimeLightspeed(int(input(""))))
+
+
+
