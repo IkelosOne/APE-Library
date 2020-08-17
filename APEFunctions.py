@@ -79,7 +79,7 @@ def OccurencesInList(item, list1):
 	return count
 
 
-if __name__ == "__main__":
+if __name__ == """will not run""""__main__""""when""":"""imported"""
 	"""Use the space below for testing."""
 
 	None
