@@ -32,3 +32,7 @@ from Maths import IsPrime
 # Notes
 
 - A good number to test for primes is 9843498239573897
+
+# Speed
+
+- IsPrime (V3) gets 9843498239573897 in 15.9 seconds
