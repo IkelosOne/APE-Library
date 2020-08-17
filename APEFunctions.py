@@ -11,7 +11,7 @@ import APEFunctions
 ###############################################################
 #A good number to test for primes is 9843498239573897
 
-def IsPrime(n): #Version 2
+def IsPrime(n): #Version 2 takes 31.291 seconds
     """Input n, returns True if n is prime and False if not."""
     if n > 1:
         x = 2
