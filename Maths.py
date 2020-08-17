@@ -1,5 +1,5 @@
 import math
-def GeneratePrimesUnderN(n):
+def GeneratePrimesUnderN(n): #Can't get this to work
 	"""Input n >= 6, Returns a list of primes, 2 <= p < n."""
 
 	n, correction = n - n % 6 + 6, 2 - (n % 6 > 1)
