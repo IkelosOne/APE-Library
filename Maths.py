@@ -1,5 +1,4 @@
-import math
-def GeneratePrimesUnderN(n): #Can't get this to work
+def GeneratePrimesUnderN(n):  # Can't get this to work
 	"""Input n >= 6, Returns a list of primes, 2 <= p < n."""
 
 	n, correction = n - n % 6 + 6, 2 - (n % 6 > 1)
@@ -15,7 +14,7 @@ def IsPrime(n):
 	"""Input n, returns True if n is prime and False if not."""
 
 	if n > 1:
-		for i in range(2,math.sqrt(n)):
+		for i in range(2, n ** 0.5):
 			if (n % i) == 0:
 				return False
 		else:
