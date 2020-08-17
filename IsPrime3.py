@@ -21,4 +21,5 @@ def IsPrime(n): #Version 3 - Time 15.81
             return True
         return False
 
-print(IsPrime(int(input(""))))
+if __name__=="__main__":
+    print(IsPrime(int(input(""))))
