@@ -17,4 +17,4 @@ def IsPrime(n): #Version 3 - Time 16.04
     else:
         return False
 
-print(IsPrime(int(input(""))))
+#print(IsPrime(int(input(""))))
