@@ -1,3 +1,6 @@
+import sys
+import logging
+##--------------------------------------------------------------------------------------
 def IsPrime(n): #Version 2 (will be replaced with version 3 once developent on it ends as bugs may occur)
     """Input n, returns True if n is prime and False if not."""
 
@@ -12,7 +15,7 @@ def IsPrime(n): #Version 2 (will be replaced with version 3 once developent on i
     else:
     	return False
 
-
+##--------------------------------------------------------------------------------------
 def IsPrime3(n):  # Version 3 - Time 16.04
     """Input n, returns True if n is prime and False if not."""
 
@@ -26,7 +29,7 @@ def IsPrime3(n):  # Version 3 - Time 16.04
         return True
     else:
         return False
-
+##--------------------------------------------------------------------------------------
 def MakeBool(string):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! IS IT? - Arun
 	if string == "False":
 		return False
@@ -34,7 +37,7 @@ def MakeBool(string):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! IS 
 		return True
 	else:
 		print("Impossible")
-
+##--------------------------------------------------------------------------------------
 def InsertCommas(number):
 	"""Inserts commas into the corresponding places in a number."""
 
@@ -45,7 +48,7 @@ def InsertCommas(number):
 		newString = newString[:-(3 * commasNeeded)] + "," + newString[-(3 * commasNeeded):]
 		commasNeeded -= 1
 	return newString
-
+##--------------------------------------------------------------------------------------
 def ReverseIt(inp):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! DOES IT? - Arun
 	"""Takes string or int and return reversed version as string."""
 
@@ -55,7 +58,7 @@ def ReverseIt(inp):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! DOES 
 		digit = inp[len(inp) - x - 1]
 		revNum += digit
 	return revNum
-
+##--------------------------------------------------------------------------------------
 def IsPalendromic(n):
 	"""Returns True if n is palendromic and False if not."""
 
@@ -64,7 +67,7 @@ def IsPalendromic(n):
 		if n[x] != n[len(n) - x - 1]:
 			return False
 	return True
-
+##--------------------------------------------------------------------------------------
 def OccurencesInList(item, list1):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! DOES IT? - Arun
 	"""Returns the amount of occurences of an item in a list."""
 
@@ -73,35 +76,61 @@ def OccurencesInList(item, list1):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - 
 		if list1[x] == item:
 			count += 1
 	return count
-
+##--------------------------------------------------------------------------------------
 def CollatzSequencer(start, returnHighest=False):
-    """Default: Starts with "start" number then follows collatz sequence to 1 and returns list for sequence"""
-    """Return Highest: Starts with "start" number then follows collatz sequence to 1 and returns the highest number in the sequence"""
+	"""Default: Starts with "start" number then follows collatz sequence to 1 and returns list for sequence"""
+	"""Return Highest: Starts with "start" number then follows collatz sequence to 1 and returns the highest number in the sequence"""
 
-    result = int(start)
-    if returnHighest == False:
-        resultsList = []
-    else:
-        largest = 0
-    while result != 1:
-        if result % 2 == 0:
-            result /= 2
-        else:
-            result *= 3
-            result += 1
-        if returnHighest == False:
-            resultsList.append(int(result))
-        else:
-            if result > largest:
-                largest = result
-    if returnHighest == False:
-        return resultsList
-    else:
-        return int(largest)
+	result = int(start)
+	if returnHighest == False:
+	    resultsList = []
+	else:
+	    largest = 0
+	while result != 1:
+	    if result % 2 == 0:
+	        result /= 2
+	    else:
+	        result *= 3
+	        result += 1
+	    if returnHighest == False:
+	        resultsList.append(int(result))
+	    else:
+	        if result > largest:
+	            largest = result
+	if returnHighest == False:
+	    return resultsList
+	else:
+	    return int(largest)
+##--------------------------------------------------------------------------------------
+def TriangulerSequencer(sequenceLength = 0,term = 0):
+	"""Sequence: Generates sequence up to "sequenceLength" and returns list for sequence """
+	"""Term: Generates sequence to find "term", which is then returned"""
 
+	sequenceLength = int(sequenceLength)
+	term = int(term)
+	if sequenceLength > 0:
+		sequence = [0,1]
+		x = 1
+	elif term > 0:
+		sequenceLength = term
+	else:
+		try:
+			term = 0/0
+			print("Sequence length or term must be inputted")
+		except Exception as e:
+			logging.exception("sequenceLength or term must be > 0",exc_info=True)
+		return 0
+	for x in range(sequenceLength):
+		sequence.append(sequence[x-1]+sequence[x])
+	if sequenceLength > 0:
+		return sequence
+	else:
+		return sequence[term]
+
+##--------------------------------------------------------------------------------------
 if __name__ == "__main__":
     """Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-    ##print(ExampleFunction(input("")))
+    print(TriangulerSequencer(5))
     None
