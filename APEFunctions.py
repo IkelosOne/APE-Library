@@ -104,33 +104,32 @@ def CollatzSequencer(start, returnHighest=False):
 ##--------------------------------------------------------------------------------------
 def TriangulerSequencer(sequenceLength = 0,term = 0):
 	"""Sequence: Generates sequence up to "sequenceLength" and returns list for sequence """
-	"""Term: Generates sequence to find "term", which is then returned"""
+	"""Term: Generates sequence to find "term", which is then returned""" #WIP #https://www.mathsisfun.com/algebra/triangular-numbers.html
 
 	sequenceLength = int(sequenceLength)
 	term = int(term)
-	if sequenceLength > 0:
-		sequence = [0,1]
-		x = 1
-	elif term > 0:
+	sequence = [1,1]
+	if term > 0:
 		sequenceLength = term
-	else:
+	elif sequenceLength == 0: #Error mesage WIP
 		try:
 			term = 0/0
 			print("Sequence length or term must be inputted")
 		except Exception as e:
 			logging.exception("sequenceLength or term must be > 0",exc_info=True)
 		return 0
-	for x in range(sequenceLength):
+
+	for x in range(1,sequenceLength):
 		sequence.append(sequence[x-1]+sequence[x])
-	if sequenceLength > 0:
-		return sequence
-	else:
+	if term > 0:
 		return sequence[term]
+	else:
+		return sequence[1:] #Doesn't return the first 1
 
 ##--------------------------------------------------------------------------------------
 if __name__ == "__main__":
     """Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-    print(TriangulerSequencer(5))
+    print(TriangulerSequencer(20))
     None
