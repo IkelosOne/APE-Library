@@ -1,57 +1,43 @@
-def IsPrime(n):
-	"""Input n, returns True if n is prime and False if not."""
-	if n > 1:
-		x = 2
-		while x * x <= n:  # x * x < n is much more efficient than x < sqrt(n)
-			if (n % x) == 0:
-				return False
-			x += 1
-		return True
-	else:
-		return False
+import sys
+import logging
+##--------------------------------------------------------------------------------------
+def IsPrime(n): #Version 2 (will be replaced with version 3 once developent on it ends as bugs may occur)
+    """Input n, returns True if n is prime and False if not."""
 
-def IsPrime2(n):  # Formerly IsPrimeLightSpeed
-	"""Assumes that n is a positive natural number.
-	Source: https://www.rookieslab.com/posts/fastest-way-to-check-if-a-number-is-prime-or-not"""
+    n = int(n)
+    if n > 1:
+    	x = 2
+    	while x * x <= n:  # x * x < n is much more efficient than x < sqrt(n)
+    		if (n % x) == 0:
+    			return False
+    		x += 1
+    	return True
+    else:
+    	return False
 
-	# We know 1 is not a prime number
-	if n == 1:
-		return False
-
-	i = 2
-	# This will loop from 2 to int(sqrt(x))
-	while i * i <= n:
-		# Check if i divides x without leaving a remainder
-		if n % i == 0:
-			# This means that n has a factor in between 2 and sqrt(n)
-			# So it is not a prime number
-			return False
-		i += 1
-	# If we did not find any factor in the above loop,
-	# then n is a prime number
-	return True
-
+##--------------------------------------------------------------------------------------
 def IsPrime3(n):  # Version 3 - Time 16.04
-	"""Input n, returns True if n is prime and False if not."""
+    """Input n, returns True if n is prime and False if not."""
 
-	if n > 1:
-		x = 2
-		while x * x <= n:  # x*x<n is much more efficient than x<sqrt(n)
-			if (n % x) == 0:
-				return False
-			x += 2
-		return True
-	else:
-		return False
-
-def MakeBool(string):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo
+    n = int(n)
+    if n > 1:
+        x = 2
+        while x * x <= n:  # x*x<n is much more efficient than x<sqrt(n)
+            if (n % x) == 0:
+                return False
+            x += 2
+        return True
+    else:
+        return False
+##--------------------------------------------------------------------------------------
+def MakeBool(string):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! IS IT? - Arun
 	if string == "False":
 		return False
 	if string == "True":
 		return True
 	else:
 		print("Impossible")
-
+##--------------------------------------------------------------------------------------
 def InsertCommas(number):
 	"""Inserts commas into the corresponding places in a number."""
 
@@ -62,8 +48,8 @@ def InsertCommas(number):
 		newString = newString[:-(3 * commasNeeded)] + "," + newString[-(3 * commasNeeded):]
 		commasNeeded -= 1
 	return newString
-
-def ReverseIt(inp):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo
+##--------------------------------------------------------------------------------------
+def ReverseIt(inp):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! DOES IT? - Arun
 	"""Takes string or int and return reversed version as string."""
 
 	inp = str(inp)
@@ -72,17 +58,17 @@ def ReverseIt(inp):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo
 		digit = inp[len(inp) - x - 1]
 		revNum += digit
 	return revNum
-
+##--------------------------------------------------------------------------------------
 def IsPalendromic(n):
 	"""Returns True if n is palendromic and False if not."""
 
 	n = str(n)
-	for x in range(len(n)):
+	for x in range(len(n)//2):
 		if n[x] != n[len(n) - x - 1]:
 			return False
 	return True
-
-def OccurencesInList(item, list1):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo
+##--------------------------------------------------------------------------------------
+def OccurencesInList(item, list1):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! DOES IT? - Arun
 	"""Returns the amount of occurences of an item in a list."""
 
 	count = 0
@@ -90,10 +76,60 @@ def OccurencesInList(item, list1):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - 
 		if list1[x] == item:
 			count += 1
 	return count
+##--------------------------------------------------------------------------------------
+def CollatzSequencer(start, returnHighest=False):
+	"""Default: Starts with "start" number then follows collatz sequence to 1 and returns list for sequence"""
+	"""Return Highest: Starts with "start" number then follows collatz sequence to 1 and returns the highest number in the sequence"""
 
+	result = int(start)
+	if returnHighest == False:
+	    resultsList = []
+	else:
+	    largest = 0
+	while result != 1:
+	    if result % 2 == 0:
+	        result /= 2
+	    else:
+	        result *= 3
+	        result += 1
+	    if returnHighest == False:
+	        resultsList.append(int(result))
+	    else:
+	        if result > largest:
+	            largest = result
+	if returnHighest == False:
+	    return resultsList
+	else:
+	    return int(largest)
+##--------------------------------------------------------------------------------------
+def TriangulerSequencer(sequenceLength = 0,term = 0):
+	"""Sequence: Generates sequence up to "sequenceLength" and returns list for sequence """
+	"""Term: Generates sequence to find "term", which is then returned""" #WIP #https://www.mathsisfun.com/algebra/triangular-numbers.html
 
+	sequenceLength = int(sequenceLength)
+	term = int(term)
+	sequence = [1,1]
+	if term > 0:
+		sequenceLength = term
+	elif sequenceLength == 0: #Error mesage WIP
+		try:
+			term = 0/0
+			print("Sequence length or term must be inputted")
+		except Exception as e:
+			logging.exception("sequenceLength or term must be > 0",exc_info=True)
+		return 0
+
+	for x in range(1,sequenceLength):
+		sequence.append(sequence[x-1]+sequence[x])
+	if term > 0:
+		return sequence[term]
+	else:
+		return sequence[1:] #Doesn't return the first 1
+
+##--------------------------------------------------------------------------------------
 if __name__ == "__main__":
-	"""Use the space below for testing. Any code here will not run when the file is imported as a
+    """Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	None
+    print(CollatzSequencer(input("")))
+    None

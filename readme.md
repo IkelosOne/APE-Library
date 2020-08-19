@@ -23,8 +23,8 @@ from Maths import IsPrime
 
 # To do list
 
-- Lowest Common Multiple
-- Highest Common Factor
+- Lowest Common Multiple (must work with the numbers in an array of any length)
+- Highest Common Factor (must work with the numbers in an array of any length)
 - Collatz Conjecture Sequencer (Sounds like an edgy si-fi band)
 - Try and improve IsPrime function if possible
 - Other sequencer functions
@@ -32,3 +32,7 @@ from Maths import IsPrime
 # Notes
 
 - A good number to test for primes is 9843498239573897
+
+# Speed
+
+- IsPrime (V3) gets 9843498239573897 in 15.9 seconds
