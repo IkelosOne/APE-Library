@@ -63,7 +63,7 @@ def IsPalendromic(n):
 	"""Returns True if n is palendromic and False if not."""
 
 	n = str(n)
-	for x in range(len(n)):
+	for x in range(len(n)//2):
 		if n[x] != n[len(n) - x - 1]:
 			return False
 	return True
@@ -131,5 +131,5 @@ if __name__ == "__main__":
     """Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-    print(TriangulerSequencer(20))
+    print(CollatzSequencer(input("")))
     None
