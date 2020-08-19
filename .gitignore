@@ -7,3 +7,4 @@ __pycache__/APEFunctions.cpython-37.pyc
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/APE-Library.iml
 __pycache__/APEFunctions.cpython-37.pyc
+*.pyc
