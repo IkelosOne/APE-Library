@@ -15,3 +15,13 @@ def CommaNumber(number):
 	while result[0] == ",":  # Gets rid of commas at start
 		result = result[1:]
 	return result
+##--------------------------------------------------------------------------------------
+def ReverseIt(inp):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! DOES IT? - Arun !!! Pablo you can do "Hello"[::-1] apparently
+	"""Takes string or int and return reversed version as string."""
+
+	inp = str(inp)
+	revNum = ""
+	for x in range(len(inp)):
+		digit = inp[len(inp) - x - 1]
+		revNum += digit
+	return revNum
