@@ -114,16 +114,16 @@ def TestForLychrel(number,attempts = 0):
 	number = int(number)
 	result = number + int(str(number)[::-1])
 	#print(number)
-	if IsPalendromic(result):
-	    return False
+	if IsPalindromic(result):
+		return False
 	else:
 		if attempts < 50:
- 			return testForLychrel(result,attempts+1) #Could get messy
+			return TestForLychrel(result,attempts+1) #Could get messy
 		else:
- 			return True
+			return True
 ##--------------------------------------------------------------------------------------
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
-	print(HighestCollatzTerm(input("")))
+	print(CollatzSequencer(input("")))
 	None
