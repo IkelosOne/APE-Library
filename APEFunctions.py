@@ -55,40 +55,33 @@ def OccurencesInList(item, list1):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - 
 			count += 1
 	return count
 
-def CollatzSequencer(start, returnHighest=False):
-	"""Default: Starts with "start" number then follows collatz sequence to 1 and returns list for sequence"""
-	"""Return Highest: Starts with "start" number then follows collatz sequence to 1 and returns the highest number in the sequence"""
+def NextCollatzTerm(number):
+	"""Will return the next number in the collatz sequence"""
+
+	if number % 2 == 0:
+		number /= 2
+	else:
+		number *= 3
+		number += 1
+	return number
+
+def CollatzSequencer(start):
+	"""Starts with "start" number then follows collatz sequence to 1 and returns list for sequence"""
 
 	result = int(start)
-	if returnHighest == False:
-		resultsList = []
-	else:
-		largest = 0
+	resultsList = []
 	while result != 1:
-		if result % 2 == 0:
-			result /= 2
-		else:
-			result *= 3
-			result += 1
-		if returnHighest == False:
-			resultsList.append(int(result))
-		else:
-			if result > largest:
-				largest = result
-	if returnHighest == False:
-		return resultsList
-	else:
-		return int(largest)
+		result = NextCollatzTerm(result)
+		resultsList.append(int(result))
+	return resultsList
 
 def HighestCollatzTerm(start):
+	"""Starts with "start" number then follows collatz sequence to 1 and returns the highest number in the sequence"""
+
 	result = int(start)
 	largest = 0
 	while result != 1:
-		if result % 2 == 0:
-			result /= 2
-		else:
-			result *= 3
-			result += 1
+		result = NextCollatzTerm(result)
 		if result > largest:
 			largest = result
 	return int(largest)
@@ -132,5 +125,5 @@ def TestForLychrel(number,attempts = 0):
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
-	print(testForLychrel(input("")))
+	print(HighestCollatzTerm(input("")))
 	None
