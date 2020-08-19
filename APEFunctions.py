@@ -48,16 +48,7 @@ def InsertCommas(number):
 		newString = newString[:-(3 * commasNeeded)] + "," + newString[-(3 * commasNeeded):]
 		commasNeeded -= 1
 	return newString
-##--------------------------------------------------------------------------------------
-def ReverseIt(inp):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! DOES IT? - Arun
-	"""Takes string or int and return reversed version as string."""
 
-	inp = str(inp)
-	revNum = ""
-	for x in range(len(inp)):
-		digit = inp[len(inp) - x - 1]
-		revNum += digit
-	return revNum
 ##--------------------------------------------------------------------------------------
 def IsPalendromic(n):
 	"""Returns True if n is palendromic and False if not."""
@@ -101,6 +92,19 @@ def CollatzSequencer(start, returnHighest=False):
 	    return resultsList
 	else:
 	    return int(largest)
+
+def HighestCollatzTerm(start):
+	result = int(start)
+	largest = 0
+	while result != 1:
+	    if result % 2 == 0:
+	        result /= 2
+	    else:
+	        result *= 3
+	        result += 1
+	    if result > largest:
+	        largest = result
+	return int(largest)
 ##--------------------------------------------------------------------------------------
 def TriangulerSequencer(sequenceLength = 0,term = 0):
 	"""Sequence: Generates sequence up to "sequenceLength" and returns list for sequence """
