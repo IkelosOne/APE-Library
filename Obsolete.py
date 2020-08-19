@@ -25,3 +25,11 @@ def ReverseIt(inp):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! DOES 
 		digit = inp[len(inp) - x - 1]
 		revNum += digit
 	return revNum
+
+def MakeBool(string):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! IS IT? - Arun
+	if string == "False":
+		return False
+	if string == "True":
+		return True
+	else:
+		print("Impossible")
