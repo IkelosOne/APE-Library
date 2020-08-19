@@ -131,9 +131,23 @@ def TriangulerSequencer(sequenceLength = 0,term = 0):
 		return sequence[1:] #Doesn't return the first 1
 
 ##--------------------------------------------------------------------------------------
+def TestForLychrel(number,attempts = 0):
+	"""Will return true if a lychrel, false if not (Will test 50 times)"""
+
+	number = int(number)
+	result = number + int(str(number)[::-1])
+	#print(number)
+	if IsPalendromic(result):
+	    return False
+	else:
+		if attempts < 50:
+ 			return testForLychrel(result,attempts+1) #Could get messy
+		else:
+ 			return True
+##--------------------------------------------------------------------------------------
 if __name__ == "__main__":
     """Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-    print(CollatzSequencer(input("")))
+    print(testForLychrel(input("")))
     None
