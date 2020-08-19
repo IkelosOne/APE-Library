@@ -1,34 +1,34 @@
 import sys
 import logging
 ##--------------------------------------------------------------------------------------
-def IsPrime(n): #Version 2 (will be replaced with version 3 once developent on it ends as bugs may occur)
-    """Input n, returns True if n is prime and False if not."""
+def IsPrime(n):  # Version 2 (will be replaced with version 3 once developent on it ends as bugs may occur)
+	"""Input n, returns True if n is prime and False if not."""
 
-    n = int(n)
-    if n > 1:
-    	x = 2
-    	while x * x <= n:  # x * x < n is much more efficient than x < sqrt(n)
-    		if (n % x) == 0:
-    			return False
-    		x += 1
-    	return True
-    else:
-    	return False
+	n = int(n)
+	if n > 1:
+		x = 2
+		while x * x <= n:  # x * x < n is much more efficient than x < sqrt(n)
+			if (n % x) == 0:
+				return False
+			x += 1
+		return True
+	else:
+		return False
 
 ##--------------------------------------------------------------------------------------
 def IsPrime3(n):  # Version 3 - Time 16.04
-    """Input n, returns True if n is prime and False if not."""
+	"""Input n, returns True if n is prime and False if not."""
 
-    n = int(n)
-    if n > 1:
-        x = 2
-        while x * x <= n:  # x*x<n is much more efficient than x<sqrt(n)
-            if (n % x) == 0:
-                return False
-            x += 2
-        return True
-    else:
-        return False
+	n = int(n)
+	if n > 1:
+		x = 2
+		while x * x <= n:  # x*x<n is much more efficient than x<sqrt(n)
+			if (n % x) == 0:
+				return False
+			x += 2
+		return True
+	else:
+		return False
 ##--------------------------------------------------------------------------------------
 def MakeBool(string):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! IS IT? - Arun
 	if string == "False":
@@ -63,7 +63,7 @@ def IsPalendromic(n):
 	"""Returns True if n is palendromic and False if not."""
 
 	n = str(n)
-	for x in range(len(n)//2):
+	for x in range(len(n) // 2):
 		if n[x] != n[len(n) - x - 1]:
 			return False
 	return True
@@ -83,53 +83,53 @@ def CollatzSequencer(start, returnHighest=False):
 
 	result = int(start)
 	if returnHighest == False:
-	    resultsList = []
+		resultsList = []
 	else:
-	    largest = 0
+		largest = 0
 	while result != 1:
-	    if result % 2 == 0:
-	        result /= 2
-	    else:
-	        result *= 3
-	        result += 1
-	    if returnHighest == False:
-	        resultsList.append(int(result))
-	    else:
-	        if result > largest:
-	            largest = result
+		if result % 2 == 0:
+			result /= 2
+		else:
+			result *= 3
+			result += 1
+		if returnHighest == False:
+			resultsList.append(int(result))
+		else:
+			if result > largest:
+				largest = result
 	if returnHighest == False:
-	    return resultsList
+		return resultsList
 	else:
-	    return int(largest)
+		return int(largest)
 ##--------------------------------------------------------------------------------------
-def TriangulerSequencer(sequenceLength = 0,term = 0):
+def TriangulerSequencer(sequenceLength=0, term=0):
 	"""Sequence: Generates sequence up to "sequenceLength" and returns list for sequence """
-	"""Term: Generates sequence to find "term", which is then returned""" #WIP #https://www.mathsisfun.com/algebra/triangular-numbers.html
+	"""Term: Generates sequence to find "term", which is then returned"""  # WIP #https://www.mathsisfun.com/algebra/triangular-numbers.html
 
 	sequenceLength = int(sequenceLength)
 	term = int(term)
-	sequence = [1,1]
+	sequence = [1, 1]
 	if term > 0:
 		sequenceLength = term
-	elif sequenceLength == 0: #Error mesage WIP
+	elif sequenceLength == 0:  # Error mesage WIP
 		try:
-			term = 0/0
+			term = 0 / 0
 			print("Sequence length or term must be inputted")
 		except Exception as e:
-			logging.exception("sequenceLength or term must be > 0",exc_info=True)
+			logging.exception("sequenceLength or term must be > 0", exc_info=True)
 		return 0
 
-	for x in range(1,sequenceLength):
-		sequence.append(sequence[x-1]+sequence[x])
+	for x in range(1, sequenceLength):
+		sequence.append(sequence[x - 1] + sequence[x])
 	if term > 0:
 		return sequence[term]
 	else:
-		return sequence[1:] #Doesn't return the first 1
+		return sequence[1:]  # Doesn't return the first 1
+
 
 ##--------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    """Use the space below for testing. Any code here will not run when the file is imported as a
+	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-    print(CollatzSequencer(input("")))
-    None
+	None
