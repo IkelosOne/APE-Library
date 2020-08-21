@@ -122,8 +122,17 @@ def TestForLychrel(number,attempts = 0):
 		else:
 			return True
 ##--------------------------------------------------------------------------------------
+def Factorial(n):
+	"""Will return the factorial of n"""
+
+	product = 1
+	for x in range(1,int(n)+1):
+		product *= x
+	return product
+##--------------------------------------------------------------------------------------
+
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
-	print(CollatzSequencer(input("")))
+	print(Factorial(input("")))
 	None
