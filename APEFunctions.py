@@ -189,53 +189,43 @@ def LowestCommonMultiple(n, m):
 				if nMultiples[count] == mMultiples[y]:
 					return mMultiples[y]
 
-def LowestCommonMultipleWIP(n,m):
+def LowestCommonMultiple2(n,m):
 	"""Will use prime factors to calculate lcm more efficiently for large inputs"""
 
 	n = int(n)
 	m = int(m)
-	if IsPrime3(n) or IsPrime3(m):
+	if IsPrime(n) or IsPrime(m):
 		return n*m
 	else:
 		pass #  Use an upcoming function to get the factors of each of the numbers
-		nFacList = FindFactors(n,True)
-		mFacList = FindFactors(m,True)
-		toMult = []
+		nFacList = FindPrimeFactors(n)
+		mFacList = FindPrimeFactors(m)
 		factors = []
 		factor = 1
 		for x in range(len(nFacList)): #  Attempts to create list of common prime factors, the most amount of times they occur
 			for y in range(len(mFacList)):
-				sum = 0
 				if nFacList[x] == mFacList[y] and OccurencesInList(mFacList[y],factors) == 0: #  Common factors
 					factor = mFacList[x]
 					if OccurencesInList(factor,mFacList) > OccurencesInList(factor,nFacList):
-						for i in range(m//factor):
-							sum += factor
-						factors.append(factor)
+						for i in range(OccurencesInList(factor,mFacList)):
+							factors.append(factor)
 					else:
-						for i in range(n//factor):
-							sum += factor
-						factors.append(factor)
+						for i in range(OccurencesInList(factor,nFacList)):
+							factors.append(factor)
 				else: #  Factors of only one number
 					factor = mFacList[y]
 					if OccurencesInList(factor, factors) == 0:
-						for i in range(m//factor):
-							sum += factor
-						factors.append(factor)
+						for i in range(OccurencesInList(factor,mFacList)):
+							factors.append(factor)
 					factor = nFacList[x]
 					if OccurencesInList(factor, factors) == 0:
-						for i in range(n//factor):
-							sum += factor
-						factors.append(factor)
-
-				toMult.append(sum)
+						for i in range(OccurencesInList(factor,nFacList)):
+							factors.append(factor)
 
 		lcm = 1
-		for t in range(len(toMult)):
-			if toMult[t] != 0:
-				lcm *= toMult[t]
-		if lcm % 2 == 0:
-			return lcm//2
+		for t in range(len(factors)):
+			if factors != 0:
+				lcm *= factors[t]
 		return lcm
 
 if __name__ == "__main__":
