@@ -55,40 +55,33 @@ def OccurencesInList(item, list1):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - 
 			count += 1
 	return count
 
-def CollatzSequencer(start, returnHighest=False):
-	"""Default: Starts with "start" number then follows collatz sequence to 1 and returns list for sequence"""
-	"""Return Highest: Starts with "start" number then follows collatz sequence to 1 and returns the highest number in the sequence"""
+def NextCollatzTerm(number):
+	"""Will return the next number in the collatz sequence"""
+
+	if number % 2 == 0:
+		number /= 2
+	else:
+		number *= 3
+		number += 1
+	return number
+
+def CollatzSequencer(start):
+	"""Starts with "start" number then follows collatz sequence to 1 and returns list for sequence"""
 
 	result = int(start)
-	if returnHighest is False:
-		resultsList = []
-	else:
-		largest = 0
+	resultsList = []
 	while result != 1:
-		if result % 2 == 0:
-			result /= 2
-		else:
-			result *= 3
-			result += 1
-		if returnHighest is False:
-			resultsList.append(int(result))
-		else:
-			if result > largest:
-				largest = result
-	if returnHighest is False:
-		return resultsList
-	else:
-		return int(largest)
+		result = NextCollatzTerm(result)
+		resultsList.append(int(result))
+	return resultsList
 
 def HighestCollatzTerm(start):
+	"""Starts with "start" number then follows collatz sequence to 1 and returns the highest number in the sequence"""
+
 	result = int(start)
 	largest = 0
 	while result != 1:
-		if result % 2 == 0:
-			result /= 2
-		else:
-			result *= 3
-			result += 1
+		result = NextCollatzTerm(result)
 		if result > largest:
 			largest = result
 	return int(largest)
@@ -123,10 +116,90 @@ def TestForLychrel(number, attempts=0):
 		return False
 	else:
 		if attempts < 50:
-			return testForLychrel(result, attempts + 1)  # Could get messy
+			return TestForLychrel(result,attempts+1) #Could get messy
 		else:
 			return True
+##--------------------------------------------------------------------------------------
+def Factorial(n):
+	"""Will return the factorial of n"""
 
+	product = 1
+	for x in range(1,int(n)+1):
+		product *= x
+	return product
+##--------------------------------------------------------------------------------------
+def FindNoOfFactors(number):
+    total = 1
+    for x in range(1,number//2 + 1):
+        if number % x == 0:
+            total += 1
+    return total
+
+def FindFactors(n,prime = False):
+	"""Will return an array of the prime factors in n. If prime is set to true, it will return the prime factor the amount of times it goes into n."""
+
+	n = int(n)
+	factors = []
+	for x in range(1, n//2 + 1):
+		if n % x == 0:
+			if prime:
+				if IsPrime3(x):
+					for i in range(n//x):
+						factors.append(x)
+			else:
+				factors.append(x)
+	return factors
+
+def LowestCommonMultiple(n, m):
+	"""Will return the lowest common multiple of the two inputs"""
+
+	n = int(n)
+	m = int(m)
+	nMultiples = []
+	mMultiples = []
+	count = -1
+	while 0 == 0:
+		count += 1
+		nMultiples.append(n*(count+1))
+		mMultiples.append(m * (count+1))
+		if nMultiples[count] > mMultiples[count]: #  Allows for catchup (stop checking when multiples are far apart maybe idk what I'm doing tbh but it works so it's all good right? I'm gonna listen to some Muse now)
+			for x in range(len(nMultiples)):
+				if mMultiples[count] == nMultiples[x]:
+					return nMultiples[x]
+		else:
+			for y in range(len(mMultiples)):
+				if nMultiples[count] == mMultiples[y]:
+					return mMultiples[y]
+
+def LowestCommonMultipleWIP(n,m):
+	"""Will use prime factors to calculate lcm more efficiently for large inputs"""
+
+	n = int(n)
+	m = int(m)
+	if IsPrime3(n) or IsPrime3(m):
+		return n*m
+	else:
+		pass #  Use an upcoming function to get the factors of each of the numbers
+		nFacList = FindFactors(n,True)
+		mFacList = FindFactors(m,True)
+		combinedFacList = []
+		for x in range(len(nFacList)): #  Attempts to create list of common prime factors, the most amount of times they occur
+			for y in range(len(mFacList)):
+				try:
+					if mFacList[x] == nFacList[y]:
+						commonFactor = mFacList[x]
+						if OccurencesInList(commonFactor,mFacList) > OccurencesInList(commonFactor,nFacList):
+							for i in range(OccurencesInList(commonFactor,mFacList)):
+								combinedFacList.append(commonFactor)
+						else:
+							for i in range(OccurencesInList(commonFactor,nFacList)):
+								combinedFacList.append(commonFactor)
+				except IndexError:
+					pass
+		lcm = 1
+		for t in range(len(combinedFacList)):
+			lcm *= combinedFacList[t]
+		return lcm
 
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
