@@ -60,7 +60,7 @@ def CollatzSequencer(start, returnHighest=False):
 	"""Return Highest: Starts with "start" number then follows collatz sequence to 1 and returns the highest number in the sequence"""
 
 	result = int(start)
-	if returnHighest == False:
+	if returnHighest is False:
 		resultsList = []
 	else:
 		largest = 0
@@ -70,12 +70,12 @@ def CollatzSequencer(start, returnHighest=False):
 		else:
 			result *= 3
 			result += 1
-		if returnHighest == False:
+		if returnHighest is False:
 			resultsList.append(int(result))
 		else:
 			if result > largest:
 				largest = result
-	if returnHighest == False:
+	if returnHighest is False:
 		return resultsList
 	else:
 		return int(largest)
@@ -113,24 +113,23 @@ def TriangulerSequencer(sequenceLength=0, term=0):
 	else:
 		return sequence[1:]  # Doesn't return the first 1
 
-
-##--------------------------------------------------------------------------------------
-def TestForLychrel(number,attempts = 0):
+def TestForLychrel(number, attempts=0):
 	"""Will return true if a lychrel, false if not (Will test 50 times)"""
 
 	number = int(number)
 	result = number + int(str(number)[::-1])
 	#print(number)
-	if IsPalendromic(result):
-	    return False
+	if IsPalindromic(result):
+		return False
 	else:
 		if attempts < 50:
- 			return testForLychrel(result,attempts+1) #Could get messy
+			return testForLychrel(result, attempts + 1)  # Could get messy
 		else:
- 			return True
-##--------------------------------------------------------------------------------------
+			return True
+
+
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
-	print(testForLychrel(input("")))
+
 	None
