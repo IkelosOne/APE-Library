@@ -29,6 +29,7 @@ from Maths import IsPrime
 - Try and improve IsPrime function if possible FINISHED
 - Triangle Number Sequencer FINISHED
 - FindPrimeFactors FINISHED
+- Get FindPrimeFactors to work with a list of numbers
 - Other sequencer functions
 - Delete ToDo.txt
 
