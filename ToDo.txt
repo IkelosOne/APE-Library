@@ -1,5 +1,0 @@
-Lowest Common Multiple
-Highest Common Factor
-Collatz Conjecture Sequencer (Sounds like an edgy si-fi band)
-Try and improve IsPrime function if possible
-Other sequencer functions
