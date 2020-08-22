@@ -33,3 +33,12 @@ def MakeBool(string):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! IS 
 		return True
 	else:
 		print("Impossible")
+##--------------------------------------------------------------------------------------
+def OccurencesInList(item, list1):  # !!!I THINK THIS ALREADY EXISTS IN-BUILT - Pablo !!! DOES IT? - Arun
+	"""Returns the amount of occurences of an item in a list."""
+
+	count = 0
+	for x in range(len(list1)):
+		if list1[x] == item:
+			count += 1
+	return count
