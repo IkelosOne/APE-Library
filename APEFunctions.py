@@ -204,22 +204,24 @@ def LowestCommonMultiple2(n,m):
 		factor = 1
 		for x in range(len(nFacList)): #  Attempts to create list of common prime factors, the most amount of times they occur
 			for y in range(len(mFacList)):
-				if nFacList[x] == mFacList[y] and OccurencesInList(mFacList[y],factors) == 0: #  Common factors
-					factor = mFacList[x]
-					if OccurencesInList(factor,mFacList) > OccurencesInList(factor,nFacList):
-						for i in range(OccurencesInList(factor,mFacList)):
+				factor = mFacList[x]
+				mOccurences = OccurencesInList(factor,mFacList)
+				nOccurences = OccurencesInList(factor,nFacList)
+				if nFacList[x] == mFacList[y] and mOccurences == 0: #  Common factors
+					if mOccurences > nOccurences: #  Will append the for most occurences
+						for i in range(mOccurences):
 							factors.append(factor)
 					else:
-						for i in range(OccurencesInList(factor,nFacList)):
+						for i in range(nOccurences):
 							factors.append(factor)
 				else: #  Factors of only one number
 					factor = mFacList[y]
-					if OccurencesInList(factor, factors) == 0:
-						for i in range(OccurencesInList(factor,mFacList)):
+					if OccurencesInList(factor, factors) == 0: #  Checks it's not already in list
+						for i in range(OccurencesInList(factor,mFacList)): #  Adds new uncommon factor to list
 							factors.append(factor)
 					factor = nFacList[x]
-					if OccurencesInList(factor, factors) == 0:
-						for i in range(OccurencesInList(factor,nFacList)):
+					if OccurencesInList(factor, factors) == 0: #  Checks it's not already in list
+						for i in range(OccurencesInList(factor,nFacList)): #  Adds new uncommon factor to list
 							factors.append(factor)
 
 		lcm = 1
@@ -231,5 +233,5 @@ def LowestCommonMultiple2(n,m):
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
-	print(LowestCommonMultipleWIP(input(""),input("")))
+	print(LowestCommonMultiple2(input(""),input("")))
 	None
