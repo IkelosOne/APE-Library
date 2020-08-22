@@ -109,9 +109,7 @@ def TriangulerSequencer(sequenceLength=0, term=0):
 	else:
 		return sequence[1:]  # Doesn't return the first 1
 
-
-##--------------------------------------------------------------------------------------
-def TestForLychrel(number,attempts = 0):
+def TestForLychrel(number, attempts=0):
 	"""Will return true if a lychrel, false if not (Will test 50 times)"""
 
 	number = int(number)
