@@ -28,6 +28,7 @@ from Maths import IsPrime
 - Collatz Conjecture Sequencer (Sounds like an edgy si-fi band)FINISHED
 - Try and improve IsPrime function if possible FINISHED
 - Triangle Number Sequencer FINISHED
+- FindPrimeFactors FINISHED
 - Other sequencer functions
 - Delete ToDo.txt
 
