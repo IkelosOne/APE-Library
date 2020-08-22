@@ -1,20 +1,23 @@
-def IsPrime(n):  # Version 2 (will be replaced with version 3 once developent on it ends as bugs may occur)
+import logging
+
+def IsPrime(n):  # Version 3 - Time 16.04
 	"""Input n, returns True if n is prime and False if not."""
 
 	n = int(n)
 	if n > 1:
 		x = 2
-		while x * x <= n:  # x * x < n is much more efficient than x < sqrt(n)
+		while x * x <= n:  # x*x<n is much more efficient than x<sqrt(n)
 			if (n % x) == 0:
 				return False
-			x += 1
+			x += 2
 		return True
 	else:
 		return False
 
 def IsPrime3(n):  # Version 3 - Time 16.04
-	"""Input n, returns True if n is prime and False if not."""
+	"""PLEASE USE IsPrime as this is deprecated. Input n, returns True if n is prime and False if not."""
 
+	logging.warn("PLEASE USE IsPrime as this is deprecated")
 	n = int(n)
 	if n > 1:
 		x = 2
@@ -137,20 +140,35 @@ def FindNoOfFactors(number):
             total += 1
     return total
 
-def FindFactors(n,prime = False):
+def FindFactors(n):
 	"""Will return an array of the prime factors in n. If prime is set to true, it will return the prime factor the amount of times it goes into n."""
 
 	n = int(n)
 	factors = []
 	for x in range(1, n//2 + 1):
 		if n % x == 0:
-			if prime:
-				if IsPrime3(x):
-					for i in range(n//x):
-						factors.append(x)
-			else:
-				factors.append(x)
+			factors.append(x)
 	return factors
+
+def FindPrimeFactors(n):
+	"""Will return a list of the prime factors, repeated as many times as to produce n"""
+
+	pFactors = []
+	for x in range(2,n//2+1):
+		if n%x == 0:
+			if IsPrime3(x):
+				pFactors.append(x)
+				if IsPrime3(n//x):
+					pFactors.append(n//x)
+				else:
+					reccursive = FindPrimeFactors(n//x)
+					for i in range(len(reccursive)):
+						pFactors.append(reccursive[i])
+			else:
+				reccursive = FindPrimeFactors(n//x)
+				for i in range(len(reccursive)):
+					pFactors.append(reccursive[i])
+			return pFactors
 
 def LowestCommonMultiple(n, m):
 	"""Will return the lowest common multiple of the two inputs"""
@@ -184,27 +202,46 @@ def LowestCommonMultipleWIP(n,m):
 		pass #  Use an upcoming function to get the factors of each of the numbers
 		nFacList = FindFactors(n,True)
 		mFacList = FindFactors(m,True)
-		combinedFacList = []
+		toMult = []
+		factors = []
+		factor = 1
 		for x in range(len(nFacList)): #  Attempts to create list of common prime factors, the most amount of times they occur
 			for y in range(len(mFacList)):
-				try:
-					if mFacList[x] == nFacList[y]:
-						commonFactor = mFacList[x]
-						if OccurencesInList(commonFactor,mFacList) > OccurencesInList(commonFactor,nFacList):
-							for i in range(OccurencesInList(commonFactor,mFacList)):
-								combinedFacList.append(commonFactor)
-						else:
-							for i in range(OccurencesInList(commonFactor,nFacList)):
-								combinedFacList.append(commonFactor)
-				except IndexError:
-					pass
+				sum = 0
+				if nFacList[x] == mFacList[y] and OccurencesInList(mFacList[y],factors) == 0: #  Common factors
+					factor = mFacList[x]
+					if OccurencesInList(factor,mFacList) > OccurencesInList(factor,nFacList):
+						for i in range(m//factor):
+							sum += factor
+						factors.append(factor)
+					else:
+						for i in range(n//factor):
+							sum += factor
+						factors.append(factor)
+				else: #  Factors of only one number
+					factor = mFacList[y]
+					if OccurencesInList(factor, factors) == 0:
+						for i in range(m//factor):
+							sum += factor
+						factors.append(factor)
+					factor = nFacList[x]
+					if OccurencesInList(factor, factors) == 0:
+						for i in range(n//factor):
+							sum += factor
+						factors.append(factor)
+
+				toMult.append(sum)
+
 		lcm = 1
-		for t in range(len(combinedFacList)):
-			lcm *= combinedFacList[t]
+		for t in range(len(toMult)):
+			if toMult[t] != 0:
+				lcm *= toMult[t]
+		if lcm % 2 == 0:
+			return lcm//2
 		return lcm
 
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
-	print(LowestCommonMultiple(input(""),input("")))
+	print(LowestCommonMultipleWIP(input(""),input("")))
 	None
