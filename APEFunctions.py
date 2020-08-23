@@ -177,7 +177,11 @@ def LowestCommonMultiple2(n, m):
 
 	n = int(n)
 	m = int(m)
-	if IsPrime(n) or IsPrime(m):
+	if n % m == 0:  # Checks some shortcut methods first
+		return n
+	elif m % n == 0:
+		return m
+	elif IsPrime(n) or IsPrime(m):
 		return n * m
 	else:
 		pass  # Use an upcoming function to get the factors of each of the numbers
@@ -188,9 +192,9 @@ def LowestCommonMultiple2(n, m):
 		for x in range(len(nFacList)):  # Attempts to create list of common prime factors, the most amount of times they occur
 			for y in range(len(mFacList)):
 				factor = mFacList[x]
-				mOccurences = OccurencesInList(factor, mFacList)
-				nOccurences = OccurencesInList(factor, nFacList)
-				if nFacList[x] == mFacList[y] and mOccurences == 0:  # Common factors
+				mOccurences = mFacList.count(factor)
+				nOccurences = nFacList.count(factor)
+				if nFacList[x] == mFacList[y] and factors.count(factor) == 0:  # Common factors
 					if mOccurences > nOccurences:  # Will append the for most occurences
 						for i in range(mOccurences):
 							factors.append(factor)
@@ -199,12 +203,12 @@ def LowestCommonMultiple2(n, m):
 							factors.append(factor)
 				else:  # Factors of only one number
 					factor = mFacList[y]
-					if OccurencesInList(factor, factors) == 0:  # Checks it's not already in list
-						for i in range(OccurencesInList(factor, mFacList)):  # Adds new uncommon factor to list
+					if factors.count(factor) == 0:  # Checks it's not already in list
+						for i in range(mFacList.count(factor)):  # Adds new uncommon factor to list
 							factors.append(factor)
 					factor = nFacList[x]
-					if OccurencesInList(factor, factors) == 0:  # Checks it's not already in list
-						for i in range(OccurencesInList(factor, nFacList)):  # Adds new uncommon factor to list
+					if factors.count(factor) == 0:  # Checks it's not already in list
+						for i in range(nFacList.count(factor)):  # Adds new uncommon factor to list
 							factors.append(factor)
 
 		lcm = 1
@@ -217,5 +221,7 @@ def LowestCommonMultiple2(n, m):
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
+
+	print(LowestCommonMultiple2(input(""),input("")))
 
 	None
