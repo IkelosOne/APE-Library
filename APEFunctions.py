@@ -1,3 +1,5 @@
+import time
+
 def IsPrime(n):
 	"""Input n, returns True if n is prime and False if not.
 	Version 3 - Time 15.81"""
@@ -152,7 +154,8 @@ def FindPrimeFactors(n):
 			return pFactors
 
 def LowestCommonMultiple(n, m):
-	"""Will return the lowest common multiple of the two inputs"""
+	"""Will return the lowest common multiple of the two inputs
+	Time - > 2 hours"""
 
 	n = int(n)
 	m = int(m)
@@ -172,8 +175,9 @@ def LowestCommonMultiple(n, m):
 				if nMultiples[count] == mMultiples[y]:
 					return mMultiples[y]
 
-def LowestCommonMultiple2(n, m):
-	"""Will use prime factors to calculate lcm more efficiently for large inputs"""
+def LowestCommonMultiple2(n, m):  # Good to test with 12345678911111111111,98765432199999999999
+	"""Will use prime factors to calculate lcm more efficiently for large inputs
+	Version 2 - Time: 59.431"""
 
 	n = int(n)
 	m = int(m)
@@ -222,6 +226,10 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	print(LowestCommonMultiple2(input(""),input("")))
+
+	t0 = time.time()
+	print(LowestCommonMultiple(12345678911111111111,98765432199999999999))
+	t1 = time.time()
+	print("Time required:", t1 - t0)
 
 	None
