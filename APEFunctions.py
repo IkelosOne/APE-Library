@@ -4,6 +4,7 @@ def IsPrime(n):
 	"""Input n, returns True if n is prime and False if not.
 	Version 3 - Time 15.81"""
 
+	n = int(n)
 	if n > 2:
 		if n % 2 == 0:
 			return False
