@@ -39,6 +39,7 @@ def IsPalindromic(n):
 			return False
 	return True
 
+
 def NextCollatzTerm(number):
 	"""Will return the next number in the collatz sequence"""
 
@@ -60,6 +61,7 @@ def CollatzSequencer(start):
 	return resultsList
 
 def HighestCollatzTerm(start):
+
 	"""Starts with "start" number then follows collatz sequence to 1 and returns the highest number
 	in the sequence"""
 
@@ -71,28 +73,27 @@ def HighestCollatzTerm(start):
 			largest = result
 	return int(largest)
 
-def TriangulerSequencer(sequenceLength=0, term=0):
-	"""Sequence: Generates sequence up to "sequenceLength" and returns list for sequence
-	Term: Generates sequence to find "term", which is then returned
 
-	WIP
-	Source: https://www.mathsisfun.com/algebra/triangular-numbers.html"""
+def TriangularSequencer(sequenceLength):
+	"""Sequence: Generates sequence up to "sequenceLength" and returns list for sequence"""
 
 	sequenceLength = int(sequenceLength)
+	sequence = [1]
+	for x in range(0, sequenceLength):
+		sequence.append(sequence[x] + x+2)
+	return sequence
+
+def TriangleNumber(term):
+	"""Term: Generates sequence to find "term", which is then returned
+	WIP - Can be improved probably:
+	Source: https://www.mathsisfun.com/algebra/triangular-numbers.html"""
+
 	term = int(term)
-	sequence = [1, 1]
-	if term > 0:
-		sequenceLength = term
-	elif sequenceLength == 0:  # Error mesage WIP
-		term = 0 / 0
-		print("Sequence length or term must be inputted")
-		return 0
-	for x in range(1, sequenceLength):
-		sequence.append(sequence[x - 1] + sequence[x])
-	if term > 0:
-		return sequence[term]
-	else:
-		return sequence[1:]  # Doesn't return the first 1
+	lastDigit = 1
+	for x in range(0, term):
+		lastDigit = (lastDigit + x+2)
+	return lastDigit
+
 
 def TestForLychrel(number, attempts=0):
 	"""Will return true if a lychrel, false if not (Will test 50 times)"""
@@ -107,6 +108,7 @@ def TestForLychrel(number, attempts=0):
 			return TestForLychrel(result, attempts + 1)  # Could get messy
 		else:
 			return True
+
 
 def Factorial(n):
 	"""Will return the factorial of n"""
@@ -153,6 +155,7 @@ def FindPrimeFactors(n):
 				for i in range(len(reccursive)):
 					pFactors.append(reccursive[i])
 			return pFactors
+
 
 def LowestCommonMultiple(n, m):
 	"""Will return the lowest common multiple of the two inputs
@@ -276,7 +279,7 @@ if __name__ == "__main__":
 
 
 	t0 = time.time()
-	print(LowestCommonMultiple(12345678911111111111,98765432199999999999))
+	print(input(""))
 	t1 = time.time()
 	print("Time required:", t1 - t0)
 
