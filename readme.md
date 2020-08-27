@@ -33,6 +33,7 @@ from Maths import IsPrime
 - Translation function between digits and words
 - Other sequencer functions
 - Seperate functions into different files for different functions
+- Numbers into words translation function (should be put in another file)
 - Delete ToDo.txt
 
 # Notes
