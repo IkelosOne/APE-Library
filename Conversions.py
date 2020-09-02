@@ -6,7 +6,7 @@ import sys
 sys.path.append("S:\Documents\GitHub\APE-Library")
 import APEFunctions
 
-def IntToWord(integer):
+def IntToWord(integer, mode = "Standard"):
 	unitsDict = {0:"",1:"One",2:"Two",3:"Three",4:"Four",5:"Five",6:"Six",7:"Seven",8:"Eight",9:"Nine"}
 	tensDict = {10:"Ten",20:"Twenty",30:"Thirty",40:"Forty",50:"Fifty",60:"Sixty",70:"Seventy",80:"Eighty",90:"Ninety"}
 	teensDict = {10:"Ten",11:"Eleven",12:"Twelve",13:"Thirteen",14:"Fourteen",15:"Fifteen",16:"Sixteen",17:"Seventeen",18:"Eighteen",19:"Nineteen"}
@@ -17,23 +17,23 @@ def IntToWord(integer):
 	word = ""
 	# Starts from left side and appends on right
 	if len(integer) > 12:
-		if integer[12] != "0":
+		if integer[-13] != "0":
 			word += IntToWord(integer[:-12]) + "Trillion"
 	if len(integer) > 9:
-		if integer[9] != "0":
+		if integer[-10] != "0":
 			word += IntToWord(integer[-12:-9]) + "Billion"
 	if len(integer) > 6:
-		if integer[6] != "0":
+		if integer[-5] != "0":
 			word += IntToWord(integer[-9:-6]) + "Million"
 	if len(integer) > 3:
-		if integer[3] != "0":
+		if integer[-4] != "0":
 			word += IntToWord(integer[-6:-3]) + "Thousand"
 	if len(integer) > 2:
-		if integer[2] != "2":
+		if integer[-3] != "0":
 			word += unitsDict[int(integer[-3:-2])] + "Hundred"
 	if len(integer) > 1:
 		if len(integer) > 2:  # Adds and inbetween hundreds and tens value
-			if integer[-3:-2] != "0":
+			if integer[-2:] != "00":
 				word += "And"
 		if integer[-2:-1] != "1":
 			if integer[-2:-1] != "0":  # stops *00 being recognised as tens
@@ -41,13 +41,32 @@ def IntToWord(integer):
 		else:  # Teens
 			word += teensDict[int(integer[-2:])]
 	if len(integer) > 0:
-		if len(integer) == 1 and integer[0] == "0":
-			return "Zero"
-		else:
+		if len(integer) == 1:
+			if integer[0] == "0":
+				return "Zero"
+			word += unitsDict[int(integer[-1:])]
+		elif integer[-2] != "1":
 			word += unitsDict[int(integer[-1:])]
 
+	if mode == "language":
+		return SpaceWords(word)
 	return word
 
-inp = input("")
-print(APEFunctions.InsertCommas(inp))
-print(IntToWord(inp))
+def SpaceWords(string):
+	"""Takes a string consisting of non-spaced but capitalised words and returns the string with spaces, taking away capital letters"""
+	newString = string[0].lower()
+	for x in range(1,len(string)):
+		if string[x].isupper():
+			newString += " "+string[x].lower()
+		else:
+			newString += string[x]
+	return newString
+
+
+if __name__ == "__main__":
+	"""Use the space below for testing. Any code here will not run when the file is imported as a
+	module. Delete it once you're finished testing."""
+
+	inp = input("")
+	print(APEFunctions.InsertCommas(inp))
+	print(IntToWord(inp))
