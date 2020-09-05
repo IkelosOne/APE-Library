@@ -30,7 +30,7 @@ from Maths import IsPrime
 - Triangle Number Sequencer FINISHED
 - FindPrimeFactors FINISHED
 - Get FindPrimeFactors to work with a list of numbers
-- Translation function between digits and words
+- Translation function between digits and words FINISHED
 - Other sequencer functions
 - Seperate functions into different files for different functions
 - Numbers into words translation function (should be put in another file)
