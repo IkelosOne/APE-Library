@@ -63,10 +63,34 @@ def SpaceWords(string):
 	return newString
 
 
+def PrintArray(array):
+	width = len(array)
+	try:
+		height = len(array[0])
+		oneDim = False
+	except TypeError:
+		height = 1
+		oneDim = True
+
+	horizontalBoarder = "--"
+	verticalBoarder = "¦"
+
+	for y in range(height):
+		row = ""
+		for x in range(width):  # Adds horizontal boarder for every row
+			row += horizontalBoarder
+		print(row)
+		row = ""
+		for x in range(width):  # Adds in the row of the array
+			if oneDim == False:
+				row += verticalBoarder + str(array[x][y])
+			else:
+				row += verticalBoarder + str(array[x])
+		print(row)
+
+
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	inp = input("")
-	print(APEFunctions.InsertCommas(inp))
-	print(IntToWord(inp))
+	print(PrintArray([[11,12,13],[21,22,23],[31,32,33],[41,42,43]]))
