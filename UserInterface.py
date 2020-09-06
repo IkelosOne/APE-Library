@@ -63,6 +63,27 @@ def SpaceWords(string):
 	return newString
 
 
+def GetLongestInArray(array):
+	"""Returns the longest (in length) item from a one/two dimensional array"""
+
+	width = len(array)
+	try:
+		height = len(array[0])
+		oneDim = False
+	except TypeError:
+		height = 1
+		oneDim = True
+
+	longest = ""
+	for x in range(width):
+		if height != 1:
+			for y in range(height):
+				if len(str(array[x][y])) > len(longest):
+					longest = str(array[x][y])
+		elif len(str(array[x])) > len(longest):
+				longest = str(array[x])
+	return longest
+
 def PrintArray(array):
 	width = len(array)
 	try:
@@ -72,21 +93,27 @@ def PrintArray(array):
 		height = 1
 		oneDim = True
 
-	horizontalBoarder = "--"
+	horizontalBoarder = "-"
 	verticalBoarder = "¦"
 
+	# Calcultes horizontal boarder length
+	row = horizontalBoarder
+	for x in range(len(GetLongestInArray(array))*(width+1) + 1):  # Adds horizontal boarder for every row
+		row += horizontalBoarder
+	row += horizontalBoarder
+	horizontalBoarder = row
+
 	for y in range(height):
-		row = ""
-		for x in range(width):  # Adds horizontal boarder for every row
-			row += horizontalBoarder
-		print(row)
+		print(horizontalBoarder)
 		row = ""
 		for x in range(width):  # Adds in the row of the array
 			if oneDim == False:
 				row += verticalBoarder + str(array[x][y])
 			else:
 				row += verticalBoarder + str(array[x])
+		row += verticalBoarder
 		print(row)
+	print(horizontalBoarder)
 
 
 if __name__ == "__main__":
