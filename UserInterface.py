@@ -84,7 +84,13 @@ def GetLongestInArray(array):
 				longest = str(array[x])
 	return longest
 
-def PrintArray(array):
+def PrintArray(array, mode = "default"):
+	"""Prints off the array in an easy to read, visual manner
+	Modes:
+	default : All boarders shown, takes up the most space
+	clean : Horizontal boarders removed but spaces between line kept, same size as default
+	compact : No horizontal seperation, much smaller in height"""
+
 	width = len(array)
 	try:
 		height = len(array[0])
@@ -96,16 +102,25 @@ def PrintArray(array):
 	horizontalBoarder = "-"
 	verticalBoarder = "¦"
 
-	# Calcultes horizontal boarder length
-	row = horizontalBoarder
 	longest = len(GetLongestInArray(array))
-	for x in range((longest+1) * width):  # Adds horizontal boarder for every row
-		row += horizontalBoarder
-	#row += horizontalBoarder
-	horizontalBoarder = row
+
+	# Calcultes horizontal boarder length
+	if mode == "default":
+		row = horizontalBoarder
+		for x in range((longest+1) * width):  # Adds horizontal boarder for every row
+			row += horizontalBoarder
+		#row += horizontalBoarder
+		horizontalBoarder = row
+	elif mode == "clean":
+		horizontalBoarder = ""
+	elif mode == "compact":
+		pass
+	else:
+		print("No valid PrintArray mode selected")
 
 	for y in range(height):
-		print(horizontalBoarder)
+		if mode != "compact":
+			print(horizontalBoarder)
 		row = ""
 		for x in range(width):  # Adds in the row of the array
 			if oneDim == False:
@@ -125,5 +140,5 @@ def PrintArray(array):
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
-	PrintArray([342,865,234])
-	print(PrintArray([[11,12,13,14],[21,22,23,24],[31,32,33,34],[41,42,43,44]]))
+
+	print(PrintArray([[11,12,13,14],[21,22,23,24],[31,32,33,34],[41,42,43,44]],mode = "default"))
