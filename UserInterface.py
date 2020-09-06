@@ -98,9 +98,10 @@ def PrintArray(array):
 
 	# Calcultes horizontal boarder length
 	row = horizontalBoarder
-	for x in range(len(GetLongestInArray(array))*(width+1) + 1):  # Adds horizontal boarder for every row
+	longest = len(GetLongestInArray(array))
+	for x in range((longest+1) * width):  # Adds horizontal boarder for every row
 		row += horizontalBoarder
-	row += horizontalBoarder
+	#row += horizontalBoarder
 	horizontalBoarder = row
 
 	for y in range(height):
@@ -109,8 +110,13 @@ def PrintArray(array):
 		for x in range(width):  # Adds in the row of the array
 			if oneDim == False:
 				row += verticalBoarder + str(array[x][y])
+				for gap in range(len(str(array[x][y])),longest):
+					row += " "
 			else:
 				row += verticalBoarder + str(array[x])
+				for gap in range(len(str(array[x])),longest):
+					row += " "
+
 		row += verticalBoarder
 		print(row)
 	print(horizontalBoarder)
@@ -119,5 +125,5 @@ def PrintArray(array):
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
-
-	print(PrintArray([[11,12,13],[21,22,23],[31,32,33],[41,42,43]]))
+	PrintArray([342,865,234])
+	print(PrintArray([[11,12,13,14],[21,22,23,24],[31,32,33,34],[41,42,43,44]]))
