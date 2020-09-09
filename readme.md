@@ -34,7 +34,7 @@ from Maths import IsPrime
 - Other sequencer functions
 - Seperate functions into different files for different functions
 - Numbers into words translation function (should be put in another file)
-- 2D/1D array display procedure (will print a well layed out grid)
+- 2D/1D array display procedure (will print a well layed out grid) FINISHED
 - Delete ToDo.txt
 
 # Notes
