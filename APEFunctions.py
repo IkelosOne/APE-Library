@@ -126,8 +126,7 @@ def FindNoOfFactors(number):
 	return total
 
 def FindFactors(n):
-	"""Will return an array of the prime factors in n. If prime is set to true, it will return the
-	prime factor the amount of times it goes into n."""
+	"""Will return an array of factors in n"""
 
 	n = int(n)
 	factors = []
