@@ -32,8 +32,8 @@ from Maths import IsPrime
 - Get FindPrimeFactors to work with a list of numbers
 - Translation function between digits and words FINISHED
 - Other sequencer functions
-- Seperate functions into different files for different functions
-- Numbers into words translation function (should be put in another file)
+- Seperate functions into different files for different catagories FINISHED
+- Numbers into words translation function FINISHED
 - 2D/1D array display procedure (will print a well layed out grid) FINISHED
 - Delete ToDo.txt
 
