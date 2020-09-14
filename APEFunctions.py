@@ -228,7 +228,7 @@ def LowestCommonMultiple3(numList):  # Good to test with [12345678911111111111,9
 	"""Takes a list of any length and will use prime factors to calculate lcm more efficiently for large inputs
 	Version 3 - Time: 59.431"""
 
-	if len(numList) == 1:
+	if len(numList) == 1:  # Ends recursion
 		return numList
 	n = int(numList[0])
 	m = int(numList[1])
@@ -272,13 +272,34 @@ def LowestCommonMultiple3(numList):  # Good to test with [12345678911111111111,9
 				lcm *= factors[t]
 		return int(LowestCommonMultiple2([lcm]+numList[2:]))
 
+def HighestCommonFactor(n, m):
+	"""Will return the highest common factor of the two inputs (should be convertable into integers)"""
+	# Code is borrowed from lcm and modified
+	n = int(n)
+	m = int(m)
+	nFacList = FindFactors(n)
+	nFacList.append(n)  # n is factor of n
+	mFacList = FindFactors(m)
+	mFacList.append(m)  # m is factor of m
+	commonFactors = []
+	factor = 1
+	highestCommon = 1
+	for x in range(len(nFacList)):  # Attempts to create list of common prime factors, the most amount of times they occur
+		for y in range(len(mFacList)):
+			factor = nFacList[x]
+			if nFacList[x] == mFacList[y] and commonFactors.count(factor) == 0:  # Common factors
+				commonFactors.append(factor)
+				if factor > highestCommon:
+					highestCommon = factor
+	return highestCommon
+
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
 
 	t0 = time.time()
-	print(input(""))
+	print(HighestCommonFactor(input(""),input("")))
 	t1 = time.time()
 	print("Time required:", t1 - t0)
 
