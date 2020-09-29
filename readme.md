@@ -15,7 +15,7 @@ import sys
 
 #APE library imports
 sys.path.append("C:/Users/NAME/Doucments/GitHub/APEFunctions")
-import APELibrary
+import APEFunctions
 
 
 #Main body
