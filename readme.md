@@ -15,7 +15,7 @@ import sys
 
 #APE library imports
 sys.path.append("C:/Users/NAME/Doucments/GitHub/APEFunctions")
-from Maths import IsPrime
+import APELibrary
 
 
 #Main body
