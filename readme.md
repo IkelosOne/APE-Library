@@ -1,6 +1,7 @@
 # Smart monkeys
 
-Made as a collection of useful functions by Arun, Pablo and Elia.
+Initially made as a collection of useful functions by Arun, Pablo and Elia.
+This fork is a continuation made by Arun Osborn
 
 # Documentation
 
