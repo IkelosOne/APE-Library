@@ -1,7 +1,7 @@
 # Smart monkeys
 
 Initially made as a collection of useful functions by Arun, Pablo and Elia.
-This fork is a continuation made by Arun Osborn
+A fork was temporarily maintained by Arun Osborn before being merged back here for further development.
 
 # Documentation
 
@@ -36,6 +36,7 @@ import APEFunctions
 - Seperate functions into different files for different catagories FINISHED
 - Numbers into words translation function FINISHED
 - 2D/1D array display procedure (will print a well layed out grid) FINISHED
+- 2D Graphical display for graphs
 - Delete ToDo.txt
 
 # Notes
