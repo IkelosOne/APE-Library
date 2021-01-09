@@ -23,7 +23,7 @@ def plotGraph(array): # Imported from terrain gen
 	except TypeError:
 		pass
 
-def convertCoordsToStandard(xCoord,yCoord):
+def convertCoords(xCoord,yCoord):
 	global screenWidth
 	global screenHeight
 	global marginWidth
