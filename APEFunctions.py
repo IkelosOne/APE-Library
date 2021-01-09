@@ -293,13 +293,28 @@ def HighestCommonFactor(n, m):
 					highestCommon = factor
 	return highestCommon
 
+def HCFEuclid(n, m):
+	n = int(n)
+	m = int(m)
+	if n < m:
+		temp = m
+		m = n
+		n = temp
+	r=1
+	while r != 0:
+		r = n%m
+		temp = m
+		m = n
+		n = temp
+	return n
+
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
 
 	t0 = time.time()
-	print(HighestCommonFactor(input(""),input("")))
+	print(HCFEuclid(input(""),input("")))
 	t1 = time.time()
 	print("Time required:", t1 - t0)
 
