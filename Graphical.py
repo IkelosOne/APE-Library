@@ -1,5 +1,6 @@
 import turtle
 import time
+import APEFunctions
 
 screenWidth =  1600
 screenHeight = 900
@@ -8,6 +9,7 @@ marginWidth = 20
 marginHeight = 20
 
 def plotGraph(array): # Imported from terrain gen
+
 	screen = turtle.Screen()
 
 	dataRange = getMaxValue(array)-getMinValue(array)
@@ -28,6 +30,8 @@ def plotGraph(array): # Imported from terrain gen
 	screen.mainloop()
 
 def convertCoords(xCoord,yCoord):
+	# Starts the coords 0,0 from bottom left, taking into account the given global margin variables
+	# Will add an option to let 0,0 be the center as this will be useful
 	global screenWidth
 	global screenHeight
 	global marginWidth
@@ -37,6 +41,7 @@ def convertCoords(xCoord,yCoord):
 	return coords
 
 def getMaxValue(array):
+	# Gets maximum value in array
 	max = array[0]
 	for i in range(len(array)):
 		if array[i]>max:
@@ -44,6 +49,7 @@ def getMaxValue(array):
 	return max
 
 def getMinValue(array):
+	# Gets minimum value in array
 	min = array[0]
 	for i in range(len(array)):
 		if array[i]<min:
@@ -52,7 +58,8 @@ def getMinValue(array):
 
 def equationToArray(equationString,resolution):
 	# Eventually you will be able to enter an equation in the form y=x...
-	# The resolution is kinda missleading. the line tradjectory is changed every resolution units so large number means fewer updates so longer, straighter lines
+	# The resolution is how many points are plotted on the graph. A resolution of 1 means one straight line, 2 means two lines etc.
+	# (A resolution of at least 20 is recommended)
 	print("Ahhhhherrrr I'll do this tomorrow")
 	array = [resolution**2+resolution*3+2]
 	gapWidth = (screenWidth-marginWidth)/(screenWidth/resolution)
@@ -69,8 +76,12 @@ if __name__ == "__main__":
 
 
 	t0 = time.time()
+
+
 	#plotGraph([0,1,2,1,3,4,5,3,2])
-	plotGraph(equationToArray("x",100))
+	plotGraph(equationToArray("x",20))
+
+
 	t1 = time.time()
 	print("Time required:", t1 - t0)
 
