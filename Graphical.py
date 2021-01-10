@@ -30,7 +30,7 @@ def plotGraph(array): # Imported from terrain gen
 	pen.up()
 	screen.mainloop()
 
-def convertCoords(xCoord,yCoord):
+def convertCoords(xCoord,yCoord,centered=False):
 	# Starts the coords 0,0 from bottom left, taking into account the given global margin variables
 	# Will add an option to let 0,0 be the center as this will be useful
 	global screenWidth
@@ -38,7 +38,10 @@ def convertCoords(xCoord,yCoord):
 	global marginWidth
 	global marginHeight
 
-	coords = [(-screenWidth/2) + marginWidth + xCoord,(-screenHeight/2) + marginHeight + yCoord]
+	if centered == False:
+		coords = [(-screenWidth/2) + marginWidth + xCoord,(-screenHeight/2) + marginHeight + yCoord]
+	else:
+		coords = [marginWidth + xCoord,marginHeight + yCoord]
 	return coords
 
 def getMaxValue(array):
@@ -57,8 +60,8 @@ def getMinValue(array):
 			min = array[i]
 	return min
 
-def equationToArray(equationString,resolution):
-	# Eventually you will be able to enter an equation in the form y=x...
+def equationToArray(formulaString,resolution):
+	# Eventually you will be able to enter an equation in the form y=.x..
 	# The resolution is how many points are plotted on the graph. A resolution of 1 means one straight line, 2 means two lines etc.
 	# (A resolution of at least 20 is recommended)
 	print("Ahhhhherrrr I'll do this tomorrow")
@@ -68,7 +71,9 @@ def equationToArray(equationString,resolution):
 		#array.append((resolution*i*screenWidth)**3+2*(resolution*i*screenWidth)**2+1/2*(resolution*i*screenWidth)+2)
 		#array.append(1000/(resolution*i*screenWidth+2))
 		x = gapWidth*i
-		array.append(x**2 + 3*x + 4)
+		equationString = re.sub("x",str(x),formulaString)
+		answer = calculateFromString(equationString)
+		array.append(answer)
 	return array
 
 
@@ -86,15 +91,15 @@ def calculateFromString(equationString):
 			currentFirstOp = parts[i]
 			if currentFirstOp.find("*")!=-1:
 				currentFirstOp = currentFirstOp.split("*")
-				firstOp.append(int(currentFirstOp[0])*int(currentFirstOp[1]))
+				firstOp.append(float(currentFirstOp[0])*float(currentFirstOp[1]))
 			elif currentFirstOp.find("^")!=-1:
 				currentFirstOp = currentFirstOp.split("^")
-				firstOp.append(int(currentFirstOp[0])**int(currentFirstOp[1]))
+				firstOp.append(float(currentFirstOp[0])**float(currentFirstOp[1]))
 			elif currentFirstOp.find("/")!=-1:
 				currentFirstOp = currentFirstOp.split("/")
-				firstOp.append(int(currentFirstOp[0])/int(currentFirstOp[1]))
+				firstOp.append(float(currentFirstOp[0])/float(currentFirstOp[1]))
 			else:
-				print("No primary operation found in "+currentFirstOp)
+				#print("No primary operation found in "+currentFirstOp)
 				firstOp.append(float(currentFirstOp))
 
 	answer = firstOp[0]
@@ -107,6 +112,7 @@ def calculateFromString(equationString):
 		else:
 			print("Can't understand this "+secondOp+" operator yet")
 
+	print(answer)
 	return answer
 
 
@@ -119,7 +125,8 @@ if __name__ == "__main__":
 
 
 	#plotGraph([0,1,2,1,3,4,5,3,2])
-	#plotGraph(equationToArray("x",20))
+	plotGraph(equationToArray("x^0.8",50))
+	#print(calculateFromString("3*4+6/3-10/2"))
 
 
 	t1 = time.time()
