@@ -1,6 +1,7 @@
 import turtle
 import time
-import APEFunctions
+import StandardFunctions
+import re # For regex
 
 screenWidth =  1600
 screenHeight = 900
@@ -70,6 +71,45 @@ def equationToArray(equationString,resolution):
 		array.append(x**2 + 3*x + 4)
 	return array
 
+
+
+def calculateFromString(equationString):
+	"""Takes an equation as a string containing only real numbers and basic operators. Brackets not yet supported"""
+	#parts = equationString.split("(\+|-)") # Splits at + or - but keeps the operator a the beginning of each item
+	parts = re.split("(\+|-)",equationString)
+	firstOp = []
+	secondOp = []
+	for i in range(len(parts)):
+		if parts[i] == "+" or parts[i] == "-":
+			secondOp.append(parts[i])
+		else:
+			currentFirstOp = parts[i]
+			if currentFirstOp.find("*")!=-1:
+				currentFirstOp = currentFirstOp.split("*")
+				firstOp.append(int(currentFirstOp[0])*int(currentFirstOp[1]))
+			elif currentFirstOp.find("^")!=-1:
+				currentFirstOp = currentFirstOp.split("^")
+				firstOp.append(int(currentFirstOp[0])**int(currentFirstOp[1]))
+			elif currentFirstOp.find("/")!=-1:
+				currentFirstOp = currentFirstOp.split("/")
+				firstOp.append(int(currentFirstOp[0])/int(currentFirstOp[1]))
+			else:
+				print("No primary operation found in "+currentFirstOp)
+				firstOp.append(float(currentFirstOp))
+
+	answer = firstOp[0]
+	for o in range(1,len(firstOp)):
+
+		if secondOp[o-1] == "+":
+			answer += firstOp[o]
+		elif secondOp[o-1] == "-":
+			answer -= firstOp[o]
+		else:
+			print("Can't understand this "+secondOp+" operator yet")
+
+	return answer
+
+
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
@@ -79,7 +119,7 @@ if __name__ == "__main__":
 
 
 	#plotGraph([0,1,2,1,3,4,5,3,2])
-	plotGraph(equationToArray("x",20))
+	#plotGraph(equationToArray("x",20))
 
 
 	t1 = time.time()
