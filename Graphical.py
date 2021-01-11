@@ -10,8 +10,8 @@ marginWidth = 20
 marginHeight = 20
 
 def plotGraph(array): # Imported from terrain gen
-
 	screen = turtle.Screen()
+	turtle.tracer(0,0)
 
 	dataRange = getMaxValue(array)-getMinValue(array)
 
@@ -19,15 +19,16 @@ def plotGraph(array): # Imported from terrain gen
 	unitHeight = (screenHeight-marginHeight)/dataRange
 
 	screen.setup(screenWidth,screenHeight)
-	pen = turtle.Turtle()
-	pen.speed = 0
-	pen.up()
-	pen.goto((-screenWidth/2) + marginWidth,(-screenHeight/2) + marginHeight)
-	pen.down()
+	terry = turtle.Turtle()
+	terry.speed = 0
+	terry.up()
+	terry.goto((-screenWidth/2) + marginWidth,(-screenHeight/2) + marginHeight)
+	terry.down()
 	for x in range(len(array)):
 		coords = convertCoords(x*gapWidth,int(array[x])*unitHeight)
-		pen.goto(coords[0],coords[1])
-	pen.up()
+		terry.goto(coords[0],coords[1])
+	terry.up()
+	turtle.update()
 	screen.mainloop()
 
 def convertCoords(xCoord,yCoord,centered=False):
@@ -125,7 +126,7 @@ if __name__ == "__main__":
 
 
 	#plotGraph([0,1,2,1,3,4,5,3,2])
-	plotGraph(equationToArray("x^0.8",50))
+	plotGraph(equationToArray("x^2",50))
 	#print(calculateFromString("3*4+6/3-10/2"))
 
 
