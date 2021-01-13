@@ -16,7 +16,7 @@ class EquationArray():
 		# Eventually you will be able to enter an equation in the form y=.x..
 		# The resolution is how many points are plotted on the graph. A resolution of 1 means one straight line, 2 means two lines etc.
 		# (A resolution of at least 20 is recommended)
-		min = self.endX
+		min = self.startX
 		max = self.endX
 		graphRange = max - min
 		gapWidth = graphRange/self.resolution

@@ -18,7 +18,7 @@ def plotGraph(array): # Imported from terrain gen
 	screen = turtle.Screen()
 	turtle.tracer(0,0)
 
-	dataRange = getMaxValue(array)-getMinValue(array)
+	dataRange = StandardFunctions.getMaxValue(array)-StandardFunctions.getMinValue(array)
 
 	gapWidth = (screenWidth-marginWidth-originScreenCoords[1])/len(array)
 	unitHeight = (screenHeight-marginHeight)/dataRange
@@ -55,26 +55,10 @@ def convertCoords(xCoord,yCoord):
 
 def setOriginPosition(position):
 	global originScreenCoords
-	if position=="center":
+	if position=="c":
 		originScreenCoords=[screenWidth/2,screenHeight/2]
-	elif position=="bottomLeft":
+	elif position=="bl":
 		originScreenCoords=[0,0]
-
-def getMaxValue(array):
-	# Gets maximum value in array
-	max = array[0]
-	for i in range(len(array)):
-		if array[i]>max:
-			max = array[i]
-	return max
-
-def getMinValue(array):
-	# Gets minimum value in array
-	min = array[0]
-	for i in range(len(array)):
-		if array[i]<min:
-			min = array[i]
-	return min
 
 
 
@@ -84,7 +68,7 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 
 
-	equationObject = EquationArray.EquationArray("x^2",-5,5)
+	equationObject = EquationArray.EquationArray("x^2",-5,10)
 	plotGraph(equationObject.get_array())
 
 	None
