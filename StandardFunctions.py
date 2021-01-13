@@ -318,13 +318,29 @@ def intAllInArray(array):
 		print("Cannot convert all in array to integers")
 		return [0]
 
+def getMaxValue(array):
+		# Gets maximum value in array
+		max = array[0]
+		for i in range(len(array)):
+			if array[i]>max:
+				max = array[i]
+		return max
+
+def getMinValue(array):
+	# Gets minimum value in array
+	min = array[0]
+	for i in range(len(array)):
+		if array[i]<min:
+			min = array[i]
+	return min
+
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 	import time
 
 	t0 = time.time()
-	print(HCFEuclid(input(""),input("")))
+	print(getMinValue([0,1,3,4,-1.5]))
 	t1 = time.time()
 	print("Time required:", t1 - t0)
 

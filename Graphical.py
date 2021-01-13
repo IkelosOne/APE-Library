@@ -2,6 +2,7 @@ import turtle
 import time
 import StandardFunctions
 import re # For regex
+import EquationArray
 
 screenWidth =  1600
 screenHeight = 900
@@ -75,74 +76,7 @@ def getMinValue(array):
 			min = array[i]
 	return min
 
-def equationToArray(formulaString,resolution,min=0,max=(screenWidth-marginWidth)):
-	# Eventually you will be able to enter an equation in the form y=.x..
-	# The resolution is how many points are plotted on the graph. A resolution of 1 means one straight line, 2 means two lines etc.
-	# (A resolution of at least 20 is recommended)
-	array = []
-	#gapWidth = (screenWidth-marginWidth)/(screenWidth/resolution) # This is what was used when the x axis was a fixed scale, 0 to screenWidth
-	graphRange = max - min
-	gapWidth = graphRange/resolution
-	for i in range(round(resolution)):
-		x = min + gapWidth*i
-		equationString = re.sub("x",str(x),formulaString)
-		answer = calculateFromString(equationString)
-		array.append(answer)
-	return array
 
-
-
-def calculateFromString(equationString):
-	"""Takes an equation as a string containing only real numbers and basic operators. Brackets not yet supported"""
-	#parts = equationString.split("(\+|-)") # Splits at + or - but keeps the operator a the beginning of each item
-	parts = re.split("(\+|-)",equationString)
-	firstOp = []
-	secondOp = []
-	for i in range(len(parts)):
-		if parts[i] == "+" or parts[i] == "-":
-			secondOp.append(parts[i])
-		else:
-			currentFirstOp = parts[i]
-			if currentFirstOp.find("*")!=-1:
-				currentFirstOp = currentFirstOp.split("*")
-				if len(secondOp)>0 and secondOp[len(secondOp)-1] == "-":
-					firstOp.append(-float(currentFirstOp[0])*float(currentFirstOp[1]))
-					secondOp[len(secondOp)-1] = "+"
-				else:
-					firstOp.append(float(currentFirstOp[0])*float(currentFirstOp[1]))
-			elif currentFirstOp.find("^")!=-1:
-				currentFirstOp = currentFirstOp.split("^")
-				if len(secondOp)>0 and secondOp[len(secondOp)-1] == "-":
-					firstOp.append(float(currentFirstOp[0])**float(currentFirstOp[1]))
-					secondOp[len(secondOp)-1] = "+"
-				else:
-					firstOp.append(float(currentFirstOp[0])**float(currentFirstOp[1]))
-			elif currentFirstOp.find("/")!=-1:
-				currentFirstOp = currentFirstOp.split("/")
-				if len(secondOp)>0 and secondOp[len(secondOp)-1] == "-":
-					firstOp.append(-float(currentFirstOp[0])/float(currentFirstOp[1]))
-					secondOp[len(secondOp)-1] = "+"
-				else:
-					firstOp.append(float(currentFirstOp[0])/float(currentFirstOp[1]))
-			else:
-				#print("No primary operation found in "+currentFirstOp)
-				try:
-					firstOp.append(float(currentFirstOp))
-				except ValueError:
-					firstOp.append(0)
-
-	answer = firstOp[0]
-	for o in range(1,len(firstOp)):
-
-		if secondOp[o-1] == "+":
-			answer += firstOp[o]
-		elif secondOp[o-1] == "-":
-			answer -= firstOp[o]
-		else:
-			print("Can't understand this "+secondOp+" operator yet")
-
-	#print(answer)
-	return answer
 
 
 if __name__ == "__main__":
@@ -150,10 +84,7 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 
 
-	#plotGraph([0,1,2,1,3,4,5,3,2])
-	#setOriginPosition("center")
-	setOriginPosition("bottomLeft")
-	plotGraph(equationToArray("x^2",11,-5,5))
-	#print(calculateFromString("3*4+6/3-10/2"))
+	equationObject = EquationArray.EquationArray("x^2",-5,5)
+	plotGraph(equationObject.get_array())
 
 	None
