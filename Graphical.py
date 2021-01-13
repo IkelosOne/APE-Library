@@ -29,7 +29,7 @@ def plotGraph(array): # Imported from terrain gen
 	terry.goto(convertCoords(0,0))
 	terry.down()
 	for x in range(len(array)):
-		coords = convertCoords(x*gapWidth,int(array[x])*unitHeight,array)
+		coords = convertCoords(x*gapWidth,int(array[x])*unitHeight)
 		terry.goto(coords[0],coords[1])
 	terry.up()
 	turtle.update()
@@ -39,7 +39,7 @@ def plotGraph(array): # Imported from terrain gen
 	screen.mainloop()
 
 
-def convertCoords(xCoord,yCoord,array = [0]):
+def convertCoords(xCoord,yCoord):
 	# Starts the coords 0,0 from bottom left, taking into account the given global margin variables
 	# Will add an option to let 0,0 be the center as this will be useful
 	global screenWidth
