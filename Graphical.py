@@ -28,10 +28,10 @@ def plotGraph(array): # Imported from terrain gen
 	terry.speed = 0
 	terry.up()
 	terry.goto(convertCoords(0,0))
-	terry.down()
 	for x in range(len(array)):
 		coords = convertCoords(x*gapWidth,int(array[x])*unitHeight)
 		terry.goto(coords[0],coords[1])
+		terry.down()
 	terry.up()
 	turtle.update()
 
