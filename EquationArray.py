@@ -23,8 +23,8 @@ class EquationArray():
 		self.array = []
 		for i in range(round(self.resolution)):
 			x = min + gapWidth*i
-			equationString = re.sub("x",str(x),self.formulaString)
-			answer = Maths.calculateFromString(equationString)
+			equationString = re.sub("x",str(round(x)),self.formulaString)
+			answer = Maths.calculateFromString2(equationString)
 			self.array.append(answer)
 
 
