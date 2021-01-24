@@ -336,8 +336,10 @@ def getMinValue(array):
 
 def isInt(value):
 	try:
-		value += 1
+		value = int(value)
 		return True
+	except TypeError:
+		return False
 	except ValueError:
 		return False
 
