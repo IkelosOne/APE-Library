@@ -12,12 +12,13 @@ marginHeight = 20
 
 originScreenCoords = [100,100]
 
-def plotGraph(array): # Imported from terrain gen
+def plotGraph(equationArray): # Imported from terrain gen
 	t0 = time.time()
 
 	screen = turtle.Screen()
 	turtle.tracer(0,0)
 
+	array = equationArray.get_array()
 	dataRange = StandardFunctions.getMaxValue(array)-StandardFunctions.getMinValue(array)
 
 	gapWidth = (screenWidth-marginWidth-originScreenCoords[1])/len(array)
@@ -27,6 +28,23 @@ def plotGraph(array): # Imported from terrain gen
 	terry = turtle.Turtle()
 	terry.speed = 0
 	terry.up()
+
+	# Draws X axis
+	print(equationArray.get_startX())
+	print(equationArray.get_endX())
+	terry.goto(convertCoords(equationArray.get_startX()*gapWidth,0))
+	terry.down()
+	terry.goto(convertCoords(equationArray.get_endX()*gapWidth,0))
+	terry.up()
+
+	# Draws Y axis
+	print(StandardFunctions.getMinValue(array))
+	print(StandardFunctions.getMaxValue(array))
+	terry.goto(convertCoords(0,StandardFunctions.getMinValue(array)*unitHeight))
+	terry.down()
+	terry.goto(convertCoords(0,StandardFunctions.getMaxValue(array)*unitHeight))
+	terry.up()
+
 	terry.goto(convertCoords(0,0))
 	for x in range(len(array)):
 		coords = convertCoords(x*gapWidth,int(array[x])*unitHeight)
@@ -68,7 +86,7 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 
 
-	equationObject = EquationArray.EquationArray("x^2",-5,10)
-	plotGraph(equationObject.get_array())
+	equationObject = EquationArray.EquationArray("x^3+x^2-3*x",-5,50)
+	plotGraph(equationObject)
 
 	None
