@@ -334,6 +334,13 @@ def getMinValue(array):
 			min = array[i]
 	return min
 
+def isInt(value):
+	try:
+		value += 1
+		return True
+	except ValueError:
+		return False
+
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
