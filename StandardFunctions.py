@@ -319,19 +319,25 @@ def intAllInArray(array):
 		return [0]
 
 def getMaxValue(array):
-		# Gets maximum value in array
-		max = array[0]
-		for i in range(len(array)):
+	# Gets maximum value in array
+	max = array[0]
+	for i in range(len(array)):
+		try:
 			if array[i]>max:
 				max = array[i]
-		return max
+		except TypeError:
+			pass
+	return max
 
 def getMinValue(array):
 	# Gets minimum value in array
 	min = array[0]
 	for i in range(len(array)):
-		if array[i]<min:
-			min = array[i]
+		try:
+			if array[i]<min:
+				min = array[i]
+		except TypeError:
+			print("Complex number found and ignored")
 	return min
 
 def isType(value,checkType):

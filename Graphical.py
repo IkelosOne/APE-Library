@@ -12,7 +12,7 @@ marginHeight = 20
 
 originScreenCoords = [100,100]
 
-def plotGraph(equationArray): # Imported from terrain gen
+def plotGraph(equationArray): # Draws a graph from the given EquationArray object (regular arrays have been broken)
 	t0 = time.time()
 
 	screen = turtle.Screen()
@@ -86,8 +86,8 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 
 
-	equationObject = EquationArray.EquationArray("x^2",-10,20)
-	equationObject.set_resolution(100)
+	equationObject = EquationArray.EquationArray("(x-2)^(1/3)",-1,2)
+	equationObject.set_resolution(20)
 	plotGraph(equationObject)
 
 	None
