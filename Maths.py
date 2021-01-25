@@ -68,21 +68,21 @@ def calculateFromString2(equationString):
 		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^":
 			if  (equationString[x] == "-" and x == 0) or (equationString[x] == "-" and (equationString[x-1] == "+" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^")): # Handles negative numbers
 				for i in range(x,len(equationString)):
-					if StandardFunctions.isInt(equationString[i]) == True: # Keeps going until the number ends and there is an operator
+					if StandardFunctions.isType(equationString[i],"int") == True: # Keeps going until the number ends and there is an operator
 						numberList.append(int(equationString[x:i+1]))
 						break
 				x += i
 			else:
 				operatorList.append(equationString[x])
-		elif StandardFunctions.isInt(equationString[x]) == True:
+		elif StandardFunctions.isType(equationString[x],"int") == True:
 			for i in range(x,len(equationString)+1):
 				if i>len(equationString)-1:
 					numberList.append(int(equationString[x:i]))
 					x += i-1
 					break
-				elif  StandardFunctions.isInt(equationString[i]) == False: # Keeps going until the number ends and there is an operator
+				elif  StandardFunctions.isType(equationString[i],"int") == False and equationString[i]!=".": # Keeps going until the number ends and there is an operator
 					try:
-						numberList.append(int(equationString[x:i]))
+						numberList.append(float(equationString[x:i]))
 						x += i-1
 					except ValueError:
 						numberList.append(int(equationString[x]))
@@ -110,6 +110,6 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	print(calculateFromString2("(12^2)+3"))
+	print(calculateFromString2("2.2^2"))
 
 	None
