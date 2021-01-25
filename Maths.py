@@ -67,17 +67,20 @@ def calculateFromString2(equationString):
 			x += i # Stops doing everything else in the bracket as it will be done in the reccursion
 		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^":
 			if  (equationString[x] == "-" and x == 0) or (equationString[x] == "-" and (equationString[x-1] == "+" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^")): # Handles negative numbers
-				for i in range(x,len(equationString)):
-					if StandardFunctions.isType(equationString[i],"int") == True: # Keeps going until the number ends and there is an operator
-						numberList.append(int(equationString[x:i+1]))
+				for i in range(x+1,len(equationString)):
+					if  StandardFunctions.isType(equationString[i],"int") == False and equationString[i]!=".": # Keeps going until the number ends and there is an operator
+						try:
+							numberList.append(float(equationString[x:i]))
+							x = i-1
+						except ValueError:
+							numberList.append(float(equationString[x]))
 						break
-				x = i
 			else:
 				operatorList.append(equationString[x])
 		elif StandardFunctions.isType(equationString[x],"int") == True:
 			for i in range(x,len(equationString)+1):
 				if i>len(equationString)-1: # Checks if this is the last digit in equationString
-					numberList.append(int(equationString[x:i]))
+					numberList.append(float(equationString[x:i]))
 					x = i-1
 					break
 				elif  StandardFunctions.isType(equationString[i],"int") == False and equationString[i]!=".": # Keeps going until the number ends and there is an operator
@@ -85,7 +88,7 @@ def calculateFromString2(equationString):
 						numberList.append(float(equationString[x:i]))
 						x = i-1
 					except ValueError:
-						numberList.append(int(equationString[x]))
+						numberList.append(float(equationString[x]))
 					break
 
 
@@ -110,6 +113,6 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	print(calculateFromString2("2^(2+3)"))
+	print(calculateFromString2("-20.0^2"))
 
 	None

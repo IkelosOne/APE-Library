@@ -86,8 +86,8 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 
 
-	equationObject = EquationArray.EquationArray("x^2",-20,20)
-	equationObject.set_resolution(160)
+	equationObject = EquationArray.EquationArray("x^2",-10,20)
+	equationObject.set_resolution(100)
 	plotGraph(equationObject)
 
 	None
