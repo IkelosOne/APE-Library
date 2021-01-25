@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
 
 	equationObject = EquationArray.EquationArray("x^2",-20,20)
-	equationObject.set_resolution(200)
+	equationObject.set_resolution(160)
 	plotGraph(equationObject)
 
 	None

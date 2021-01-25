@@ -334,14 +334,23 @@ def getMinValue(array):
 			min = array[i]
 	return min
 
-def isInt(value):
-	try:
-		value = int(value)
-		return True
-	except TypeError:
-		return False
-	except ValueError:
-		return False
+def isType(value,checkType):
+	if checkType == "int":
+		try:
+			value = int(value)
+			return True
+		except TypeError:
+			return False
+		except ValueError:
+			return False
+	elif checkType == "float":
+		try:
+			value = float(value)
+			return True
+		except TypeError:
+			return False
+		except ValueError:
+			return False
 
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
