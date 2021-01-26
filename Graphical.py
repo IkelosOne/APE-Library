@@ -39,22 +39,20 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 	terry.up()
 
 	# Draws X axis
-	"""
 	print(equationArray.get_startX())
 	print(equationArray.get_endX())
 	terry.goto(convertCoords(equationArray.get_startX()*gapWidth,0))
 	terry.down()
 	terry.goto(convertCoords(equationArray.get_endX()*gapWidth,0))
-	terry.up()"""
+	terry.up()
 
 	# Draws Y axis
-	"""
 	print(StandardFunctions.getMinValue(array))
 	print(StandardFunctions.getMaxValue(array))
 	terry.goto(convertCoords(0,StandardFunctions.getMinValue(array)*unitHeight))
 	terry.down()
 	terry.goto(convertCoords(0,StandardFunctions.getMaxValue(array)*unitHeight))
-	terry.up()"""
+	terry.up()
 
 	terry.goto(convertCoords(0,0))
 	for x in range(len(array)):
@@ -127,8 +125,8 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 
 
-	equationObject = EquationArray.EquationArray("(x-2)^(1/3)",-1,2)
-	equationObject.set_resolution(4)
+	equationObject = EquationArray.EquationArray("x^2+3x-2",-10,10)
+	equationObject.set_resolution(screenWidth)
 	setOriginPosition("c")
 	plotGraph(equationObject)
 

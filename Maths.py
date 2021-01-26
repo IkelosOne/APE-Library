@@ -2,7 +2,7 @@ import re
 import StandardFunctions
 import math
 
-def calculateFromString(equationString):
+def calculateFromStringObsolete(equationString):
 		"""Takes an equation as a string containing only real numbers and basic operators. Brackets not yet supported"""
 		#parts = equationString.split("(\+|-)") # Splits at + or - but keeps the operator a the beginning of each item
 		parts = re.split("(\+|\()",equationString)
@@ -54,12 +54,19 @@ def calculateFromString(equationString):
 		#print(answer)
 		return answer
 
-def calculateFromString2(equationString):
+def calculateFromString(equationString):
 	"""uses reccursion to break down an equation to its smallest calculations"""
 	numberList = []
 	operatorList = []
 	x = 0
 	while x < len(equationString):
+		try:
+			if equationString[x] == equationString[x+1]: # Gets rid of double + and double - when encountered
+				if equationString[x] == "+" or equationString[x] == "-":
+					equationString = equationString[0:x] + "+" + equationString[x+2:]
+		except IndexError:
+			pass
+
 		if equationString[x] == "(":
 			for i in range(x,len(equationString)):
 				if equationString[i] == ")":
@@ -118,7 +125,7 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	print(calculateFromString2("-3^(1/3)"))
+	print(calculateFromString("0--2"))
 	#print(-2**(2))
 
 	None
