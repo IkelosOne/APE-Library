@@ -64,7 +64,7 @@ def calculateFromString2(equationString):
 				if equationString[i] == ")":
 					numberList.append(calculateFromString2(equationString[x+1:i])) # Will send whats inside the bracket to get processed
 					break
-			x += i # Stops doing everything else in the bracket as it will be done in the reccursion
+			x = i # Stops doing everything else in the bracket as it will be done in the reccursion
 		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^":
 			if  (equationString[x] == "-" and x == 0) or (equationString[x] == "-" and (equationString[x-1] == "+" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^")): # Handles negative numbers
 				for i in range(x+1,len(equationString)):

@@ -87,7 +87,7 @@ if __name__ == "__main__":
 
 
 	equationObject = EquationArray.EquationArray("(x-2)^(1/3)",-1,2)
-	equationObject.set_resolution(20)
+	equationObject.set_resolution(4)
 	plotGraph(equationObject)
 
 	None
