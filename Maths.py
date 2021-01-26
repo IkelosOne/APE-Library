@@ -1,5 +1,6 @@
 import re
 import StandardFunctions
+import math
 
 def calculateFromString(equationString):
 		"""Takes an equation as a string containing only real numbers and basic operators. Brackets not yet supported"""
@@ -105,7 +106,11 @@ def calculateFromString2(equationString):
 		elif operatorList[n] == "/":
 			answer /= numberList[n+1]
 		elif operatorList[n] == "^":
-			answer = answer**numberList[n+1]
+			try:
+				#answer = answer**(numberList[n+1])
+				answer = math.pow(answer,numberList[n+1]) # This can throw errors and not do stupid ocmplex numbers
+			except ValueError:
+				answer = -((-answer)**(numberList[n+1])) # Cheating?
 	return answer
 
 
@@ -113,6 +118,7 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	print(calculateFromString2("-20.0^2"))
+	print(calculateFromString2("-3^(1/3)"))
+	#print(-2**(2))
 
 	None

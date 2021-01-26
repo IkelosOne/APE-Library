@@ -11,11 +11,18 @@ marginWidth = 20
 marginHeight = 20
 
 originScreenCoords = [100,100]
+screenCoords = [0,0]
+
+moveSpeed = 40
+
+screen = turtle.Screen()
+screen.setup(screenWidth,screenHeight)
 
 def plotGraph(equationArray): # Draws a graph from the given EquationArray object (regular arrays have been broken)
+	global screen
 	t0 = time.time()
 
-	screen = turtle.Screen()
+
 	turtle.tracer(0,0)
 
 	array = equationArray.get_array()
@@ -24,26 +31,30 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 	gapWidth = (screenWidth-marginWidth-originScreenCoords[1])/len(array)
 	unitHeight = (screenHeight-marginHeight)/dataRange
 
-	screen.setup(screenWidth,screenHeight)
+	screen = turtle.Screen()
+	screen.setworldcoordinates(screenCoords[0],screenCoords[1],screenWidth,screenHeight)
+	#screen.setup(screenWidth,screenHeight)
 	terry = turtle.Turtle()
 	terry.speed = 0
 	terry.up()
 
 	# Draws X axis
+	"""
 	print(equationArray.get_startX())
 	print(equationArray.get_endX())
 	terry.goto(convertCoords(equationArray.get_startX()*gapWidth,0))
 	terry.down()
 	terry.goto(convertCoords(equationArray.get_endX()*gapWidth,0))
-	terry.up()
+	terry.up()"""
 
 	# Draws Y axis
+	"""
 	print(StandardFunctions.getMinValue(array))
 	print(StandardFunctions.getMaxValue(array))
 	terry.goto(convertCoords(0,StandardFunctions.getMinValue(array)*unitHeight))
 	terry.down()
 	terry.goto(convertCoords(0,StandardFunctions.getMaxValue(array)*unitHeight))
-	terry.up()
+	terry.up()"""
 
 	terry.goto(convertCoords(0,0))
 	for x in range(len(array)):
@@ -55,7 +66,13 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 
 	t1 = time.time()
 	print("Time required:", t1 - t0)
-	screen.mainloop()
+	screen.onkey(moveViewUp,"Up")
+	screen.onkey(moveViewDown,"Down")
+	screen.onkey(moveViewLeft,"Left")
+	screen.onkey(moveViewRight,"Right")
+	screen.listen()
+	turtle.done()
+	#screen.mainloop()
 
 
 def convertCoords(xCoord,yCoord):
@@ -78,6 +95,30 @@ def setOriginPosition(position):
 	elif position=="bl":
 		originScreenCoords=[0,0]
 
+def moveViewUp():
+	global screen
+	global moveSpeed
+	print("Go up")
+	screenCoords[1] += moveSpeed
+	screen.setworldcoordinates(screenCoords[0],screenCoords[1],screenWidth,screenHeight)
+
+def moveViewDown():
+	global screen
+	global moveSpeed
+	screenCoords[1] -= moveSpeed
+	screen.setworldcoordinates(screenCoords[0],screenCoords[1],screenWidth,screenHeight)
+
+def moveViewLeft():
+	global screen
+	global moveSpeed
+	screenCoords[0] -= moveSpeed
+	screen.setworldcoordinates(screenCoords[0],screenCoords[1],screenWidth,screenHeight)
+
+def moveViewRight():
+	global screen
+	global moveSpeed
+	screenCoords[0] += moveSpeed
+	screen.setworldcoordinates(screenCoords[0],screenCoords[1],screenWidth,screenHeight)
 
 
 
@@ -88,6 +129,7 @@ if __name__ == "__main__":
 
 	equationObject = EquationArray.EquationArray("(x-2)^(1/3)",-1,2)
 	equationObject.set_resolution(4)
+	setOriginPosition("c")
 	plotGraph(equationObject)
 
 	None
