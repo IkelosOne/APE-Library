@@ -1,4 +1,4 @@
-# Smart monkeys
+# Smart Monkeys making smart funcitons
 
 Initially made as a collection of useful functions by Arun, Pablo and Elia.
 A fork was temporarily maintained by Arun Osborn before being merged back here for further development.
