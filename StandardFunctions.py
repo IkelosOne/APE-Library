@@ -1,5 +1,3 @@
-
-
 def IsPrime(n):
 	"""Input n, returns True if n is prime and False if not.
 	Version 3 - Time 15.81"""
@@ -18,17 +16,6 @@ def IsPrime(n):
 		if n == 2:
 			return True
 		return False
-
-def InsertCommas(number):
-	"""Inserts commas into the corresponding places in a number."""
-
-	string = str(number)
-	newString = string
-	commasNeeded = len(str(number)[:-1]) // 3
-	while commasNeeded > 0:
-		newString = newString[:-(3 * commasNeeded)] + "," + newString[-(3 * commasNeeded):]
-		commasNeeded -= 1
-	return newString
 
 def IsPalindromic(n):
 	"""Returns True if n is palindromic and False if not."""
@@ -61,7 +48,6 @@ def CollatzSequencer(start):
 	return resultsList
 
 def HighestCollatzTerm(start):
-
 	"""Starts with "start" number then follows collatz sequence to 1 and returns the highest number
 	in the sequence"""
 
@@ -73,14 +59,13 @@ def HighestCollatzTerm(start):
 			largest = result
 	return int(largest)
 
-
 def TriangularSequencer(sequenceLength):
 	"""Sequence: Generates sequence up to "sequenceLength" and returns list for sequence"""
 
 	sequenceLength = int(sequenceLength)
 	sequence = [1]
 	for x in range(0, sequenceLength):
-		sequence.append(sequence[x] + x+2)
+		sequence.append(sequence[x] + x + 2)
 	return sequence
 
 def TriangleNumber(term):
@@ -91,9 +76,8 @@ def TriangleNumber(term):
 	term = int(term)
 	lastDigit = 1
 	for x in range(0, term):
-		lastDigit = (lastDigit + x+2)
+		lastDigit = (lastDigit + x + 2)
 	return lastDigit
-
 
 def TestForLychrel(number, attempts=0):
 	"""Will return true if a lychrel, false if not (Will test 50 times)"""
@@ -108,7 +92,6 @@ def TestForLychrel(number, attempts=0):
 			return TestForLychrel(result, attempts + 1)  # Could get messy
 		else:
 			return True
-
 
 def Factorial(n):
 	"""Will return the factorial of n"""
@@ -154,7 +137,6 @@ def FindPrimeFactors(n):
 				for i in range(len(reccursive)):
 					pFactors.append(reccursive[i])
 			return pFactors
-
 
 def LowestCommonMultiple(n, m):
 	"""Will return the lowest common multiple of the two inputs
@@ -233,11 +215,11 @@ def LowestCommonMultiple3(numList):  # Good to test with [12345678911111111111,9
 	n = int(numList[0])
 	m = int(numList[1])
 	if n % m == 0:  # Checks some shortcut methods first
-		return LowestCommonMultiple2([n]+numList[2:])
+		return LowestCommonMultiple2([n] + numList[2:])
 	elif m % n == 0:
-		return LowestCommonMultiple2([m]+numList[2:])
+		return LowestCommonMultiple2([m] + numList[2:])
 	elif IsPrime(n) or IsPrime(m):
-		return LowestCommonMultiple2([n * m]+numList[2:])
+		return LowestCommonMultiple2([n * m] + numList[2:])
 	else:
 		pass  # Use an upcoming function to get the factors of each of the numbers
 		nFacList = FindPrimeFactors(n)
@@ -270,7 +252,7 @@ def LowestCommonMultiple3(numList):  # Good to test with [12345678911111111111,9
 		for t in range(len(factors)):
 			if factors != 0:
 				lcm *= factors[t]
-		return int(LowestCommonMultiple2([lcm]+numList[2:]))
+		return int(LowestCommonMultiple2([lcm] + numList[2:]))
 
 def HighestCommonFactor(n, m):
 	"""Will return the highest common factor of the two inputs (should be convertable into integers)"""
@@ -293,6 +275,7 @@ def HighestCommonFactor(n, m):
 					highestCommon = factor
 	return highestCommon
 
+<<<<<<< Updated upstream
 def HCFEuclid(a, b):
 	a = int(a)
 	b = int(b)
@@ -307,60 +290,88 @@ def HCFEuclid(a, b):
 		b = a
 		a = temp
 	return a
+=======
+def HCFEuclid(n, m):
+	n = int(n)
+	m = int(m)
+	if n < m:
+		temp = m
+		m = n
+		n = temp
+	r = 1
+	while r != 0:
+		r = n % m
+		temp = m
+		m = n
+		n = temp
+	return n
+>>>>>>> Stashed changes
 
-def intAllInArray(array):
-	"""Attempts to turn all data inside the array to integers"""
-	try:
-		for x in range(len(array)):
-			array[x] = int(array[x])
-		return array
-	except TypeError:
-		print("Cannot convert all in array to integers")
-		return [0]
+def EuclideanAlgorithm(b, a):
+	"""Returns the greatest common divisor of a and b using the Euclidean Algorithm.
+	This function is also known as gcd() or hcf().
 
-def getMaxValue(array):
-	# Gets maximum value in array
-	max = array[0]
-	for i in range(len(array)):
-		try:
-			if array[i]>max:
-				max = array[i]
-		except TypeError:
-			pass
-	return max
+	Arun I think you already programmed this above, so now we have to race our algorithms to the
+	death..."""
 
-def getMinValue(array):
-	# Gets minimum value in array
-	min = array[0]
-	for i in range(len(array)):
-		try:
-			if array[i]<min:
-				min = array[i]
-		except TypeError:
-			print("Complex number found and ignored")
-	return min
+	if a == 0 or b == 0:
+		if a == 0 and b == 0:
+			return 0
+		else:
+			return 1
+	if b % a != 0:
+		return EuclideanAlgorithm(a, b % a)
+	else:
+		return a
 
-def isType(value,checkType):
-	if checkType == "int":
-		try:
-			value = int(value)
-			return True
-		except TypeError:
-			return False
-		except ValueError:
-			return False
-	elif checkType == "float":
-		try:
-			value = float(value)
-			return True
-		except TypeError:
-			return False
-		except ValueError:
-			return False
+def BezoutCoefficients(a, b):
+	"""Generates two Bezout coefficients, s and t, satisfying Bezout's identity as + bt = gcd(a, b).
+	Pseudocode from https://www.dcode.fr/bezout-identity
+
+	N.B. doesn't work."""
+
+	r1 = a
+	r2 = b
+	u1 = 1
+	u2 = 0
+	v1 = 0
+	v2 = 1
+
+	while r2 != 0:
+		q = int(r1 / r2)
+		rs = r1
+		us = u1
+		vs = v1
+		r = r2
+		u = u2
+		v = v2
+		r2 = rs - q * r2
+		u2 = us - q * u2
+		v2 = vs - q * v2
+	return r, u, v
+
+def Gamma(a):
+	"""Gamma function, the generalised factorial. The function Γ such that Γ(α + 1) = αΓ(α). Takes
+	any real number greater than 0."""
+
+	if a > 1:
+		return (a - 1) * Gamma(a - 1)
+	else:
+		return a
+
+def Factorial2(n):
+	"""Mathematical factorial function. Works the same as the usual approach, but it uses the Gamma
+	function. Mathematically pleasing. Gauss-approved. Takes an integer n >= 0.
+
+	Note: Gamma(1/2)**2 should equal pi - I don't think it works for non-integers."""
+
+	return Gamma(n + 1)
+
 
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
+<<<<<<< Updated upstream
 	import time
 
 	t0 = time.time()
@@ -368,4 +379,6 @@ if __name__ == "__main__":
 	t1 = time.time()
 	print("Time required:", t1 - t0)
 
+=======
+>>>>>>> Stashed changes
 	None
