@@ -38,6 +38,7 @@ import APEFunctions
 - 2D/1D array display procedure (will print a well layed out grid) FINISHED
 - 2D Graphical display for graphs
 - Binary and decimal conversion (possibly works with any base)
+- Add pip instal functionality?
 - Delete ToDo.txt
 
 # Notes
