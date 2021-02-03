@@ -1,5 +1,6 @@
 import re
 import StandardFunctions
+import Formatting
 import math
 
 
@@ -89,10 +90,13 @@ def toDecimal(number,base):
 	digits = len(number)
 	decimal = 0
 	for x in range(digits):
+		digit = number[x]
+		if Formatting.isType(digit,"string"):
+			digit = ord(digit.upper()) -65+10 # Allows use of letters to represent numbers above 9
 		if x == digits-1: # 0^0 = 1 according to python so had to manually fix this
-			decimal += int(number[x])
+			decimal += int(digit)
 		else:
-			decimal += (int(number[x])*base)**(digits-x-1)
+			decimal += (int(digit)*base)**(digits-x-1)
 	return decimal
 
 
@@ -119,6 +123,6 @@ if __name__ == "__main__":
 
 	#print(calculateFromString("2+(3-(5*4))"))
 	#print(binaryToDecimal(10010111)) # = 151
-	print(toDecimal(101,2))
+	print(toDecimal("21",16))
 
 	None

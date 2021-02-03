@@ -20,14 +20,23 @@ def isType(value, checkType):
 			return False
 		except ValueError:
 			return False
-	elif checkType == "float":
+	elif checkType == "float" or checkType == "string":
 		try:
 			value = float(value)
-			return True
+			if checkType == "float":
+				return True
+			else:
+				return False
 		except TypeError:
-			return False
+			if checkType == "string":
+				return True
+			else:
+				return False
 		except ValueError:
-			return False
+			if checkType == "string":
+				return True
+			else:
+				return False
 
 #Note: This is build-in: max(). Consider moving to obsolete.
 def getMaxValue(array):
