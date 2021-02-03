@@ -293,20 +293,20 @@ def HighestCommonFactor(n, m):
 					highestCommon = factor
 	return highestCommon
 
-def HCFEuclid(n, m):
-	n = int(n)
-	m = int(m)
-	if n < m:
-		temp = m
-		m = n
-		n = temp
+def HCFEuclid(a, b):
+	a = int(a)
+	b = int(b)
+	if a < b:
+		temp = b
+		b = a
+		a = temp
 	r=1
 	while r != 0:
-		r = n%m
-		temp = m
-		m = n
-		n = temp
-	return n
+		r = a%b
+		temp = b
+		b = a
+		a = temp
+	return a
 
 def intAllInArray(array):
 	"""Attempts to turn all data inside the array to integers"""
@@ -364,7 +364,7 @@ if __name__ == "__main__":
 	import time
 
 	t0 = time.time()
-	print(getMinValue([0,1,3,4,-1.5]))
+	print(HCFEuclid(251286031017,99999999990))
 	t1 = time.time()
 	print("Time required:", t1 - t0)
 

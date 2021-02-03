@@ -2,60 +2,9 @@ import re
 import StandardFunctions
 import math
 
-def calculateFromStringObsolete(equationString):
-		"""Takes an equation as a string containing only real numbers and basic operators. Brackets not yet supported"""
-		#parts = equationString.split("(\+|-)") # Splits at + or - but keeps the operator a the beginning of each item
-		parts = re.split("(\+|\()",equationString)
-		firstOp = []
-		secondOp = []
-		for i in range(len(parts)):
-			if parts[i] == "+":
-				secondOp.append(parts[i])
-			else:
-				currentFirstOp = parts[i]
-				if currentFirstOp.find("*")!=-1:
-					currentFirstOp = currentFirstOp.split("*")
-					if len(secondOp)>0 and secondOp[len(secondOp)-1] == "-":
-						firstOp.append(-float(currentFirstOp[0])*float(currentFirstOp[1]))
-						secondOp[len(secondOp)-1] = "+"
-					else:
-						firstOp.append(float(currentFirstOp[0])*float(currentFirstOp[1]))
-				elif currentFirstOp.find("^")!=-1:
-					currentFirstOp = currentFirstOp.split("^")
-					if len(secondOp)>0 and secondOp[len(secondOp)-1] == "-":
-						firstOp.append(float(currentFirstOp[0])**float(currentFirstOp[1]))
-						secondOp[len(secondOp)-1] = "+"
-					else:
-						firstOp.append(float(currentFirstOp[0])**float(currentFirstOp[1]))
-				elif currentFirstOp.find("/")!=-1:
-					currentFirstOp = currentFirstOp.split("/")
-					if len(secondOp)>0 and secondOp[len(secondOp)-1] == "-":
-						firstOp.append(-float(currentFirstOp[0])/float(currentFirstOp[1]))
-						secondOp[len(secondOp)-1] = "+"
-					else:
-						firstOp.append(float(currentFirstOp[0])/float(currentFirstOp[1]))
-				else:
-					#print("No primary operation found in "+currentFirstOp)
-					try:
-						firstOp.append(float(currentFirstOp))
-					except ValueError:
-						firstOp.append(0)
-
-		answer = firstOp[0]
-		for o in range(1,len(firstOp)):
-
-			if secondOp[o-1] == "+":
-				answer += firstOp[o]
-			elif secondOp[o-1] == "-":
-				answer -= firstOp[o]
-			else:
-				print("Can't understand this "+secondOp+" operator yet")
-
-		#print(answer)
-		return answer
 
 def calculateFromString(equationString):
-	"""uses reccursion to break down an equation to its smallest calculations"""
+	"""Uses reccursion to break down an equation to its smallest calculations"""
 	numberList = []
 	operatorList = []
 	x = 0
@@ -70,7 +19,7 @@ def calculateFromString(equationString):
 		if equationString[x] == "(":
 			for i in range(x,len(equationString)):
 				if equationString[i] == ")":
-					numberList.append(calculateFromString2(equationString[x+1:i])) # Will send whats inside the bracket to get processed
+					numberList.append(calculateFromString(equationString[x+1:i])) # Will send whats inside the bracket to get processed
 					break
 			x = i # Stops doing everything else in the bracket as it will be done in the reccursion
 		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^":
@@ -121,11 +70,26 @@ def calculateFromString(equationString):
 	return answer
 
 
+
+
+def binaryToDecimal(binary):
+	binary = str(binary)
+	digits = len(binary)
+	decimal = 0
+	for x in range(digits):
+		if x == digits-1: # 0^0 = 1 according to python so had to manually fix this
+			decimal += int(binary[x])
+		else:
+			decimal += (int(binary[x])*2)**(digits-x-1)
+	return decimal
+
+
+
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	print(calculateFromString("0--2"))
-	#print(-2**(2))
+	#print(calculateFromString("2+(3-(5*4))"))
+	print(binaryToDecimal(10010111))
 
 	None
