@@ -83,6 +83,19 @@ def binaryToDecimal(binary):
 			decimal += (int(binary[x])*2)**(digits-x-1)
 	return decimal
 
+def toDecimal(number,base):
+	"""This function is so incredibly based"""
+	number = str(number)
+	digits = len(number)
+	decimal = 0
+	for x in range(digits):
+		if x == digits-1: # 0^0 = 1 according to python so had to manually fix this
+			decimal += int(number[x])
+		else:
+			decimal += (int(number[x])*base)**(digits-x-1)
+	return decimal
+
+
 def decimalToBinary(decimal):
 	decimal = int(decimal)
 	binary = 0
@@ -106,6 +119,6 @@ if __name__ == "__main__":
 
 	#print(calculateFromString("2+(3-(5*4))"))
 	#print(binaryToDecimal(10010111)) # = 151
-	print(decimalToBinary(11))
+	print(toDecimal(101,2))
 
 	None
