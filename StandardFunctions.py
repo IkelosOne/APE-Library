@@ -1,5 +1,7 @@
 def BaseConverter(x, n, m):
-	"""Takes a number x in base n and returns it in base m."""
+	"""Takes a number x in base n and returns it in base m.
+
+	N.B. Yeah it doesn't work..."""
 
 	return x % n // m + x % n % m
 
