@@ -1,3 +1,8 @@
+def BaseConverter(x, n, m):
+	"""Takes a number x in base n and returns it in base m."""
+
+	return x % n // m + x % n % m
+
 def IsPrime(n):
 	"""Input n, returns True if n is prime and False if not.
 	Version 3 - Time 15.81"""
@@ -275,7 +280,6 @@ def HighestCommonFactor(n, m):
 					highestCommon = factor
 	return highestCommon
 
-<<<<<<< Updated upstream
 def HCFEuclid(a, b):
 	a = int(a)
 	b = int(b)
@@ -283,15 +287,15 @@ def HCFEuclid(a, b):
 		temp = b
 		b = a
 		a = temp
-	r=1
+	r = 1
 	while r != 0:
-		r = a%b
+		r = a % b
 		temp = b
 		b = a
 		a = temp
 	return a
-=======
-def HCFEuclid(n, m):
+
+def HCFEuclid2(n, m):
 	n = int(n)
 	m = int(m)
 	if n < m:
@@ -305,7 +309,6 @@ def HCFEuclid(n, m):
 		m = n
 		n = temp
 	return n
->>>>>>> Stashed changes
 
 def EuclideanAlgorithm(b, a):
 	"""Returns the greatest common divisor of a and b using the Euclidean Algorithm.
@@ -371,14 +374,9 @@ def Factorial2(n):
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
-<<<<<<< Updated upstream
-	import time
 
-	t0 = time.time()
-	print(HCFEuclid(251286031017,99999999990))
-	t1 = time.time()
-	print("Time required:", t1 - t0)
-
-=======
->>>>>>> Stashed changes
-	None
+	for x in range(20):
+		print(x)
+		print(BaseConverter(x, 10, 16))
+		print(hex(x))
+		print()
