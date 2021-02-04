@@ -1,6 +1,7 @@
 def check_brackets():
 	"""Takes a number of lines of code and validates the number of opened and closed brackets.
-	This is the program I said I made with that uni student years ago..."""
+	This is the program I said I made with that uni student years ago...
+	When you were boasting about how clever you were? xd Also this will be very useful for the calculator"""
 
 	a = int(input("How many lines would you like to check?\n"))
 	for x in range(a):
