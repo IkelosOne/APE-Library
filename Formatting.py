@@ -1,3 +1,59 @@
+def check_brackets():
+	"""Takes a number of lines of code and validates the number of opened and closed brackets.
+	This is the program I said I made with that uni student years ago..."""
+
+	a = int(input("How many lines would you like to check?\n"))
+	for x in range(a):
+		var = input("Enter variable:\n")
+		brackets = {")": "(", "]": "[", "}": "{", ">": "<"}
+		bracketCount = {"(": 0, "[": 0, "{": 0, "<": 0}
+		for i in range(len(var)):
+			if var[i] in list(brackets.keys()):
+				bracketCount[brackets[var[i]]] -= 1
+				#print("-1 from", var[i])
+			elif var[i] in list(brackets.values()):
+				bracketCount[var[i]] += 1
+				#print("+1 from", var[i])
+
+	if sum(bracketCount.values()) == 0 and -1 not in list(bracketCount.values()):
+		print("Balanced")
+	else:
+		print("Unbalanced")
+
+def GetInteger(inputMin, inputMax, inputMessage):
+	"""Called when integer input is required, checks input according to parameters.
+
+	This is really old, outdated, likely doesn't work, but was an idea I had lurking in my old drive."""
+
+	inputPass = False
+	while inputPass is False:
+		try:
+			x = int(input(inputMessage))
+			if x >= inputMin and x <= inputMax:
+				inputPass = True
+				return x
+			else:
+				print("Error: Input must be integer between", inputMin, "and", str(inputMax) + ".")
+		except ValueError:
+			print("Error: Input must be integer between", inputMin, "and", str(inputMax) + ".")
+
+def GetFloat(inputMin, inputMax, inputMessage):
+	"""Called when float input is required, checks input according to parameters.
+
+	This is really old, outdated, likely doesn't work, but was an idea I had lurking in my old drive."""
+
+	inputPass = False
+	while inputPass is False:
+		try:
+			x = float(input(inputMessage))
+			if x >= inputMin and x <= inputMax:
+				inputPass = True
+				return x
+			else:
+				print("Error: Input must be float between", inputMin, "and", str(inputMax) + ".")
+		except ValueError:
+			print("Error: Input must be float between", inputMin, "and", str(inputMax) + ".")
+
 def InsertCommas(number):
 	"""Inserts commas into the corresponding places in a number."""
 
