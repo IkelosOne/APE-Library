@@ -65,7 +65,7 @@ def calculateFromString(equationString):
 		elif operatorList[n] == "^":
 			try:
 				#answer = answer**(numberList[n+1])
-				answer = math.pow(answer, numberList[n + 1])  # This can throw errors and not do stupid ocmplex numbers
+				answer = math.pow(answer, numberList[n + 1])  # This can throw errors and not do stupid complex numbers
 			except ValueError:
 				answer = -((-answer)**(numberList[n + 1]))  # Cheating? Makes it not negative, then makes it negative afterwards
 	return answer
