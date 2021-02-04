@@ -5,7 +5,7 @@ import math
 
 
 def calculateFromString(equationString):
-	"""uses reccursion to break down an equation to its smallest calculations"""
+	"""Uses reccursion to break down an equation to its smallest calculations"""
 
 	numberList = []
 	operatorList = []
@@ -18,13 +18,13 @@ def calculateFromString(equationString):
 		except IndexError:
 			pass
 
-		if equationString[x] == "(":
+		if equationString[x] == "(": # Deals with pesky brackets
 			for i in range(x, len(equationString)):
 				if equationString[i] == ")":
 					numberList.append(calculateFromString2(equationString[x + 1:i]))  # Will send whats inside the bracket to get processed
 					break
 			x = i  # Stops doing everything else in the bracket as it will be done in the reccursion
-		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^":
+		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^": # Deals with pesky operators (minus is the worst)
 			if (equationString[x] == "-" and x == 0) or (equationString[x] == "-" and (equationString[x - 1] == "+" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^")):  # Handles negative numbers
 				for i in range(x + 1, len(equationString)):
 					if StandardFunctions.isType(equationString[i], "int") == False and equationString[i] != ".":  # Keeps going until the number ends and there is an operator
@@ -36,7 +36,7 @@ def calculateFromString(equationString):
 						break
 			else:
 				operatorList.append(equationString[x])
-		elif StandardFunctions.isType(equationString[x], "int") == True:
+		elif StandardFunctions.isType(equationString[x], "int") == True: # Yay, actual, easy-to-understand, numbers!
 			for i in range(x, len(equationString) + 1):
 				if i > len(equationString) - 1:  # Checks if this is the last digit in equationString
 					numberList.append(float(equationString[x:i]))
@@ -50,10 +50,10 @@ def calculateFromString(equationString):
 						numberList.append(float(equationString[x]))
 					break
 
-		x += 1
+		x += 1 # Doesn't use for loop because some segments get skipped over in one loop cycle so x increment is not consistent
 
-	answer = numberList[0]
-	for n in range(len(operatorList)):
+	answer = numberList[0] # Final compiler
+	for n in range(len(operatorList)): # Performs operations to all the numbers in chromatic order (BIDMAS rules don't apply yet)
 		if operatorList[n] == "+":
 			answer += numberList[n + 1]
 		elif operatorList[n] == "-":
@@ -67,22 +67,10 @@ def calculateFromString(equationString):
 				#answer = answer**(numberList[n+1])
 				answer = math.pow(answer, numberList[n + 1])  # This can throw errors and not do stupid ocmplex numbers
 			except ValueError:
-				answer = -((-answer)**(numberList[n + 1]))  # Cheating?
+				answer = -((-answer)**(numberList[n + 1]))  # Cheating? Makes it not negative, then makes it negative afterwards
 	return answer
 
 
-
-
-def binaryToDecimal(binary):
-	binary = str(binary)
-	digits = len(binary)
-	decimal = 0
-	for x in range(digits):
-		if x == digits-1: # 0^0 = 1 according to python so had to manually fix this
-			decimal += int(binary[x])
-		else:
-			decimal += (int(binary[x])*2)**(digits-x-1)
-	return decimal
 
 def toDecimal(number,base):
 	"""This function is so incredibly based"""
@@ -100,7 +88,7 @@ def toDecimal(number,base):
 	return decimal
 
 
-def decimalToBinary(decimal):
+def decimalToBinaryWIP(decimal):
 	decimal = int(decimal)
 	binary = 0
 
@@ -121,8 +109,7 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	#print(calculateFromString("2+(3-(5*4))"))
-	#print(binaryToDecimal(10010111)) # = 151
-	print(toDecimal("21",16))
+	print(calculateFromString("2+(3-(5*4))"))
+	#print(toDecimal("21",16))
 
 	None
