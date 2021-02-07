@@ -297,20 +297,6 @@ def HCFEuclid(a, b):
 		a = temp
 	return a
 
-def HCFEuclid2(n, m):
-	n = int(n)
-	m = int(m)
-	if n < m:
-		temp = m
-		m = n
-		n = temp
-	r = 1
-	while r != 0:
-		r = n % m
-		temp = m
-		m = n
-		n = temp
-	return n
 
 def EuclideanAlgorithm(b, a):
 	"""Returns the greatest common divisor of a and b using the Euclidean Algorithm.
