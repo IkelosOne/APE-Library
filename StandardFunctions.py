@@ -303,7 +303,8 @@ def EuclideanAlgorithm(b, a):
 	This function is also known as gcd() or hcf().
 
 	Arun I think you already programmed this above, so now we have to race our algorithms to the
-	death..."""
+	death...
+	I would if mine worked. I'll need to fix it up soon for uni"""
 
 	if a == 0 or b == 0:
 		if a == 0 and b == 0:
@@ -363,8 +364,4 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	for x in range(20):
-		print(x)
-		print(BaseConverter(x, 10, 16))
-		print(hex(x))
-		print()
+	print(EuclideanAlgorithm(8466,7684))

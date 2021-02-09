@@ -88,18 +88,25 @@ def toDecimal(number,base):
 	return decimal
 
 
-def decimalToBinaryWIP(decimal):
+def decimalToBinary(decimal):
 	decimal = int(decimal)
-	binary = 0
+	binary = ""
 
 	remaing = decimal
-	while remaing != 0:
-		power = math.log2(remaing)
-		print(power) # debug
-		power = round(power-0.5)
-		print(power) # debug
-		binary += 2**(power-1)
-		remaing = decimal - 2**(power-1)
+
+	if decimal == 0:
+		return 0
+	elif decimal == 1:
+		return 1
+	binDigits = round(math.log2(decimal)+0.5) # Rounds up to find the numebr of digits
+	for x in range(binDigits):
+		i = binDigits-x-1
+		if 2**(i) <= remaing:
+			binary += "1"
+			remaing -= 2**i
+		else:
+			binary += "0"
+
 
 	return binary
 
@@ -109,7 +116,8 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	print(calculateFromString("2+(3-(5*4))"))
-	#print(toDecimal("21",16))
+	#print(calculateFromString("2+(3-(5*4))"))
+	for x in range(20):
+		print(decimalToBinary(x+1))
 
 	None
