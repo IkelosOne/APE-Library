@@ -283,6 +283,7 @@ def HighestCommonFactor(n, m):
 	return highestCommon
 
 def HCFEuclid(a, b):
+	"""8466,7684 I need these numbers for a thing"""
 	a = int(a)
 	b = int(b)
 	if a < b:
@@ -293,7 +294,7 @@ def HCFEuclid(a, b):
 	while r != 0:
 		r = a % b
 		temp = b
-		b = a
+		b = r
 		a = temp
 	return a
 
@@ -304,7 +305,7 @@ def EuclideanAlgorithm(b, a):
 
 	Arun I think you already programmed this above, so now we have to race our algorithms to the
 	death...
-	I would if mine worked. I'll need to fix it up soon for uni"""
+	Pablo, I would if mine worked. I'll need to fix it up soon for uni"""
 
 	if a == 0 or b == 0:
 		if a == 0 and b == 0:
@@ -363,5 +364,19 @@ def Factorial2(n):
 if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
+	import time
 
-	print(EuclideanAlgorithm(8466,7684))
+	t0 = time.time()
+	for aruns in range(10000): # Takes 0.01465 seconds on average (6 runs)
+		HCFEuclid(3395410,2913732)
+	t1 = time.time()
+	print("Time required:", t1 - t0)
+
+	t0 = time.time()
+	for pablos in range(10000): # Takes 0.02770 seconds on average (6 runs)
+		EuclideanAlgorithm(3395410,2913732)
+	t1 = time.time()
+
+	# Conclusion: Arun's algorithm is 89% faster? No idea why as the logic is the same
+
+	print("Time required:", t1 - t0)

@@ -89,6 +89,12 @@ def toDecimal(number,base):
 
 
 def decimalToBinary(decimal):
+	"""Takes any positive decimal integer and returns the binary number"""
+
+	if str(decimal)[0] == "-": # Removes negative sign to do initial conversion to binary
+		negative = True
+		decimal = str(decimal)[1:]
+
 	decimal = int(decimal)
 	binary = ""
 
@@ -108,7 +114,7 @@ def decimalToBinary(decimal):
 			binary += "0"
 
 
-	return binary
+	return int(binary)
 
 
 
@@ -119,5 +125,7 @@ if __name__ == "__main__":
 	#print(calculateFromString("2+(3-(5*4))"))
 	for x in range(20):
 		print(decimalToBinary(x+1))
+
+	print(decimalToBinary(-5))
 
 	None
