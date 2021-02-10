@@ -298,6 +298,25 @@ def HCFEuclid(a, b):
 		a = temp
 	return a
 
+def HCFMinus(a, b):
+	"""A different method"""
+	a = int(a)
+	b = int(b)
+	if a < b:
+		temp = b
+		b = a
+		a = temp
+	r = 1
+	if b != 0:
+		r = a - b
+		a = b
+		b = r
+
+		return(HCFMinus(a,b))
+	else:
+		return a
+	return a
+
 
 def EuclideanAlgorithm(b, a):
 	"""Returns the greatest common divisor of a and b using the Euclidean Algorithm.
@@ -366,6 +385,7 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 	import time
 
+	"""
 	t0 = time.time()
 	for aruns in range(10000): # Takes 0.01465 seconds on average (6 runs)
 		HCFEuclid(3395410,2913732)
@@ -376,6 +396,12 @@ if __name__ == "__main__":
 	for pablos in range(10000): # Takes 0.02770 seconds on average (6 runs)
 		EuclideanAlgorithm(3395410,2913732)
 	t1 = time.time()
+	"""
+	t0 = time.time()
+	for aruns in range(10000): # Takes 0.01465 seconds on average (6 runs)
+		HCFMinus(3395410,2913732)
+	t1 = time.time()
+	print("Time required:", t1 - t0)
 
 	# Conclusion: Arun's algorithm is 89% faster? No idea why as the logic is the same
 
