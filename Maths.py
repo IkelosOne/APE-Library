@@ -27,7 +27,7 @@ def calculateFromString(equationString):
 		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^": # Deals with pesky operators (minus is the worst)
 			if (equationString[x] == "-" and x == 0) or (equationString[x] == "-" and (equationString[x - 1] == "+" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^")):  # Handles negative numbers
 				for i in range(x + 1, len(equationString)):
-					if StandardFunctions.isType(equationString[i], "int") == False and equationString[i] != ".":  # Keeps going until the number ends and there is an operator
+					if Formatting.isType(equationString[i], "int") == False and equationString[i] != ".":  # Keeps going until the number ends and there is an operator
 						try:
 							numberList.append(float(equationString[x:i]))
 							x = i - 1
@@ -36,13 +36,13 @@ def calculateFromString(equationString):
 						break
 			else:
 				operatorList.append(equationString[x])
-		elif StandardFunctions.isType(equationString[x], "int") == True: # Yay, actual, easy-to-understand, numbers!
+		elif Formatting.isType(equationString[x], "int") == True: # Yay, actual, easy-to-understand, numbers!
 			for i in range(x, len(equationString) + 1):
 				if i > len(equationString) - 1:  # Checks if this is the last digit in equationString
 					numberList.append(float(equationString[x:i]))
 					x = i - 1
 					break
-				elif StandardFunctions.isType(equationString[i], "int") == False and equationString[i] != ".":  # Keeps going until the number ends and there is an operator
+				elif Formatting.isType(equationString[i], "int") == False and equationString[i] != ".":  # Keeps going until the number ends and there is an operator
 					try:
 						numberList.append(float(equationString[x:i]))
 						x = i - 1

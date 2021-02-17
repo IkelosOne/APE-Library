@@ -1,6 +1,7 @@
 import turtle
 import time
 import StandardFunctions
+import Formatting
 import re # For regex
 import EquationArray
 
@@ -26,7 +27,7 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 	turtle.tracer(0,0)
 
 	array = equationArray.get_array()
-	dataRange = StandardFunctions.getMaxValue(array)-StandardFunctions.getMinValue(array)
+	dataRange = Formatting.getMaxValue(array)-Formatting.getMinValue(array)
 
 	gapWidth = (screenWidth-marginWidth-originScreenCoords[1])/len(array)
 	unitHeight = (screenHeight-marginHeight)/dataRange
@@ -47,11 +48,11 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 	terry.up()
 
 	# Draws Y axis
-	print(StandardFunctions.getMinValue(array))
-	print(StandardFunctions.getMaxValue(array))
-	terry.goto(convertCoords(0,StandardFunctions.getMinValue(array)*unitHeight))
+	print(Formatting.getMinValue(array))
+	print(Formatting.getMaxValue(array))
+	terry.goto(convertCoords(0,Formatting.getMinValue(array)*unitHeight))
 	terry.down()
-	terry.goto(convertCoords(0,StandardFunctions.getMaxValue(array)*unitHeight))
+	terry.goto(convertCoords(0,Formatting.getMaxValue(array)*unitHeight))
 	terry.up()
 
 	terry.goto(convertCoords(0,0))
@@ -126,7 +127,7 @@ if __name__ == "__main__":
 
 
 	equationObject = EquationArray.EquationArray("x^2+3x-2",-10,10)
-	equationObject.set_resolution(screenWidth)
+	equationObject.set_resolution(20)
 	setOriginPosition("c")
 	plotGraph(equationObject)
 
