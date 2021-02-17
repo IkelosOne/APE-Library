@@ -126,7 +126,7 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 
 
-	equationObject = EquationArray.EquationArray("x^2+3x-2",-10,10)
+	equationObject = EquationArray.EquationArray("x^2+3*x-2",-10,10)
 	equationObject.set_resolution(20)
 	setOriginPosition("c")
 	plotGraph(equationObject)
