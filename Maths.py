@@ -88,8 +88,8 @@ def toDecimal(number,base):
 	return decimal
 
 
-def decimalToBinary(decimal):
-	"""Takes any positive decimal integer and returns the binary number"""
+def decimalToBinary(decimal,negMode = "ignore"):
+	"""Takes any positive decimal integer and returns the binary number. Sign magnitude can be used for negative"""
 
 	if str(decimal)[0] == "-": # Removes negative sign to do initial conversion to binary
 		negative = True
@@ -103,7 +103,8 @@ def decimalToBinary(decimal):
 	if decimal == 0:
 		return 0
 	elif decimal == 1:
-		return 1
+		if negMode == "ignored":
+			return 1
 	binDigits = round(math.log2(decimal)+0.5) # Rounds up to find the numebr of digits
 	for x in range(binDigits):
 		i = binDigits-x-1
@@ -113,8 +114,31 @@ def decimalToBinary(decimal):
 		else:
 			binary += "0"
 
+	if negMode == "ignored":
+		return int(binary)
+	elif negMode == "signMagnitude":
+		if negative:
+			return int("1" + binary)
+		else:
+			return int("0" + negative)
+	elif negMode == "two'sCompliment":
+		if negative:
+			return compliment(binary,2)
+		else:
+			return int("0" + negative)
 
-	return int(binary)
+
+def compliment(number,base):
+	"""Perform's base's compliment. If base is 2 it will reuturn 2's compliment"""
+
+	number = str(number)
+	lesserCompliment = ""
+	for x in range(len(number)):
+		lesserCompliment += str(base-int(number[x]))
+	lesserCompliment = int(lesserCompliment)
+
+	return lesserCompliment + 1
+
 
 
 
@@ -126,6 +150,6 @@ if __name__ == "__main__":
 	for x in range(20):
 		print(decimalToBinary(x+1))
 
-	print(decimalToBinary(-5))
+	print(decimalToBinary(-5,"two'sCompliment"))
 
 	None
