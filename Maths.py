@@ -25,7 +25,7 @@ def calculateFromString(equationString):
 					break
 			x = i  # Stops doing everything else in the bracket as it will be done in the reccursion
 		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^": # Deals with pesky operators (minus is the worst)
-			if (equationString[x] == "-" and x == 0) or (equationString[x] == "-" and (equationString[x - 1] == "+" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^")):  # Handles negative numbers
+			if (equationString[x] == "-" and x == 0) or (equationString[x] == "-" and (equationString[x - 1] == "+" or equationString[x-1] == "*" or equationString[x-1] == "/" or equationString[x-1] == "^")):  # Handles negative numbers
 				for i in range(x + 1, len(equationString)):
 					if Formatting.isType(equationString[i], "int") == False and equationString[i] != ".":  # Keeps going until the number ends and there is an operator
 						try:
