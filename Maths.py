@@ -128,6 +128,41 @@ def decimalToBinary(decimal,negMode = "ignore"):
 			return int("0" + negative)
 
 
+def addBasedNumbers(number1,number2,base,overflow = True):
+	"""Well you see, you ahve one number and this other number and you add them but the base might not be base 10 because I'm probably using it for binary so you can't use normal rules. No. You have to make sure you carry digits over after base amounts. Well actually I guess the limit is base-1 as base ten only actually goes up to 9 because you include the zero as one of the ten digits in base ten you see. So yeah, you can do that with other bases now with this you see? You see? Yeah."""
+
+	number1 = str(number1)
+	number2 = str(number2)
+
+	if int(number1) < int(number2): # Makes sure the overflow is limited to the same as the largest numebr
+		temp = number1
+		number1 = number2
+		number2 = temp
+
+	lenDiff = len(number1)-len(number2)
+	for l in range(lenDiff): # Makes both numbers the same length
+		number2 = "0" + number2
+
+	length = len(str(number1))
+	answer = ""
+
+	for i in range(length):
+		answer += "0"
+
+
+	for x in range(length): # Uses reccursion to sort out carried digits
+		digit = int(str(number1)[length-x-1] + str(number2)[length-x-1])
+		if digit > base-1:
+			digit -= base
+			addition = "1"
+			for z in range(length-x-2):
+				addition += "0"
+			answer = addBasedNumbers(answer,addition,2)
+			answer[length-x-1] = digit
+		else:
+			answer = str(answer)[:(length-x-1)] + str(digit) + str(answer)[(length-x-1):]
+
+
 def compliment(number,base):
 	"""Perform's base's compliment. If base is 2 it will reuturn 2's compliment"""
 
@@ -146,10 +181,11 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
+	"""
 	#print(calculateFromString("2+(3-(5*4))"))
 	for x in range(20):
 		print(decimalToBinary(x+1))
-
-	print(decimalToBinary(-5,"two'sCompliment"))
+	"""
+	print(addBasedNumbers(1001,1011,2))
 
 	None
