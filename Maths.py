@@ -127,10 +127,32 @@ def decimalToBinary(decimal,negMode = "ignore"):
 		else:
 			return int("0" + negative)
 
+def equaliseLengths(number1,number2):
+	"""Makes both numbers the same length by putting "0"'s before the number. Numbers returned in array as strings so formatting is kept"""
+
+	number1 = str(number1)
+	number2 = str(number2)
+	if len(number1) < len(number2): # Makes number2 shorter
+		temp = number1
+		number1 = number2
+		number2 = temp
+
+	lenDiff = len(number1)-len(number2)
+
+	for l in range(lenDiff): # Makes both numbers the same length
+		number2 = "0" + number2
+	return [number1,number2]
+
 
 def addBasedNumbers(number1,number2,base,overflow = True):
-	"""Well you see, you ahve one number and this other number and you add them but the base might not be base 10 because I'm probably using it for binary so you can't use normal rules. No. You have to make sure you carry digits over after base amounts. Well actually I guess the limit is base-1 as base ten only actually goes up to 9 because you include the zero as one of the ten digits in base ten you see. So yeah, you can do that with other bases now with this you see? You see? Yeah."""
+	"""Well you see, you have one number and this other number and you add them but the base might not be base 10 because I'm probably using it for binary so you can't use normal rules. No. You have to make sure you carry digits over after base amounts. Well actually I guess the limit is base-1 as base ten only actually goes up to 9 because you include the zero as one of the ten digits in base ten you see. So yeah, you can do that with other bases now with this you see? You see? Yeah."""
 
+	# Makes both numbers the same length
+	eqNumbers = equaliseLengths(number1,number2)
+	number1 = eqNumbers[0]
+	number2 = eqNumbers[1]
+
+	# Makes both numbers in to strings
 	number1 = str(number1)
 	number2 = str(number2)
 
@@ -139,9 +161,6 @@ def addBasedNumbers(number1,number2,base,overflow = True):
 		number1 = number2
 		number2 = temp
 
-	lenDiff = len(number1)-len(number2)
-	for l in range(lenDiff): # Makes both numbers the same length
-		number2 = "0" + number2
 
 	length = len(str(number1))
 	answer = ""
@@ -151,11 +170,11 @@ def addBasedNumbers(number1,number2,base,overflow = True):
 
 
 	for x in range(length): # Uses reccursion to sort out carried digits
-		digit = int(str(number1)[length-x-1] + str(number2)[length-x-1])
+		digit = int(str(number1)[length-x-1]) + int(str(number2)[length-x-1])
 		if digit > base-1:
 			digit -= base
 			addition = "1"
-			for z in range(length-x-2):
+			for z in range(length-x-3):
 				addition += "0"
 			answer = addBasedNumbers(answer,addition,2)
 			answer[length-x-1] = digit
@@ -186,6 +205,7 @@ if __name__ == "__main__":
 	for x in range(20):
 		print(decimalToBinary(x+1))
 	"""
-	print(addBasedNumbers(1001,1011,2))
+	#print(addBasedNumbers(1001,1011,2))
+	print(equaliseLengths(20,"0300"))
 
 	None
