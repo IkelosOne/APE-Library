@@ -180,6 +180,7 @@ def addBasedNumbers(number1,number2,base,overflow = True):
 			answer[length-x-1] = digit
 		else:
 			answer = str(answer)[:(length-x-1)] + str(digit) + str(answer)[(length-x-1):]
+	return answer
 
 
 def compliment(number,base):
