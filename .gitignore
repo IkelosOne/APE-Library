@@ -1,4 +1,6 @@
 
+__pycache__/*
+.idea/*
 *.pyc
 *.pyc
 __pycache__/APEFunctions.cpython-37.pyc
