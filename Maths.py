@@ -103,7 +103,7 @@ def decimalToBinary(decimal,negMode = "ignore"):
 	if decimal == 0:
 		return 0
 	elif decimal == 1:
-		if negMode == "ignored":
+		if negMode == "ignore":
 			return 1
 	binDigits = round(math.log2(decimal)+0.5) # Rounds up to find the numebr of digits
 	for x in range(binDigits):
@@ -114,7 +114,7 @@ def decimalToBinary(decimal,negMode = "ignore"):
 		else:
 			binary += "0"
 
-	if negMode == "ignored":
+	if negMode == "ignore":
 		return int(binary)
 	elif negMode == "signMagnitude":
 		if negative:
@@ -205,11 +205,13 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-	"""
+
 	#print(calculateFromString("2+(3-(5*4))"))
 	for x in range(20):
 		print(decimalToBinary(x+1))
-	"""
-	print(addBasedNumbers("1110","1000",base=2,overflow=True))
+
+
+	# v addBasedNumbers demo v
+	#print(addBasedNumbers("1110","1000",base=2,overflow=True))
 
 	None
