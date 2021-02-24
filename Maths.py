@@ -163,10 +163,10 @@ def addBasedNumbers(number1,number2,base,overflow = True):
 
 
 	length = len(str(number1))
-	answer = ""
+	answer = []
 
 	for i in range(length):
-		answer += "0"
+		answer.append("0")
 
 
 	for x in range(length): # Uses reccursion to sort out carried digits
@@ -176,10 +176,11 @@ def addBasedNumbers(number1,number2,base,overflow = True):
 			addition = "1"
 			for z in range(length-x-3):
 				addition += "0"
-			answer = addBasedNumbers(answer,addition,2)
+			answer = list(Formatting.arrayToString(addBasedNumbers(Formatting.arrayToString(answer),addition,2)))
 			answer[length-x-1] = digit
 		else:
-			answer = str(answer)[:(length-x-1)] + str(digit) + str(answer)[(length-x-1):]
+			#answer = str(answer)[:-x-1] + str(digit) + str(answer)[-x-0:]
+			answer[length-x-1] = str(digit)
 	return answer
 
 
@@ -206,6 +207,6 @@ if __name__ == "__main__":
 	for x in range(20):
 		print(decimalToBinary(x+1))
 	"""
-	print(addBasedNumbers(1001,1011,2))
+	print(addBasedNumbers(1001,1011,base=2))
 
 	None
