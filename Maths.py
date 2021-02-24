@@ -91,6 +91,7 @@ def toDecimal(number,base):
 def decimalToBinary(decimal,negMode = "ignore"):
 	"""Takes any positive decimal integer and returns the binary number. Sign magnitude can be used for negative"""
 
+	negative = False
 	if str(decimal)[0] == "-": # Removes negative sign to do initial conversion to binary
 		negative = True
 		decimal = str(decimal)[1:]
@@ -105,7 +106,17 @@ def decimalToBinary(decimal,negMode = "ignore"):
 	elif decimal == 1:
 		if negMode == "ignore":
 			return 1
-	binDigits = round(math.log2(decimal)+0.5) # Rounds up to find the numebr of digits
+		elif negMode == "signMagnitude":
+			if negative:
+				return "11"
+			else:
+				return "01"
+		elif negMode == "twoCompliment":
+			if negative:
+				return compliment(1,2)
+			else:
+				return "01"
+	binDigits = round(math.log2(decimal)+0.51) # Rounds up to find the numebr of digits
 	for x in range(binDigits):
 		i = binDigits-x-1
 		if 2**(i) <= remaing:
@@ -118,14 +129,14 @@ def decimalToBinary(decimal,negMode = "ignore"):
 		return int(binary)
 	elif negMode == "signMagnitude":
 		if negative:
-			return int("1" + binary)
+			return int("1" + str(binary))
 		else:
-			return int("0" + negative)
+			return int("0" + str(binary))
 	elif negMode == "two'sCompliment":
 		if negative:
 			return compliment(binary,2)
 		else:
-			return int("0" + negative)
+			return int("0" + str(binary))
 
 def equaliseNumLengths(number1,number2):
 	"""Makes both numbers the same length by putting "0"'s before the number. Numbers returned in array as strings so formatting is kept"""
@@ -207,9 +218,9 @@ if __name__ == "__main__":
 
 
 	#print(calculateFromString("2+(3-(5*4))"))
+	#print(4,": "+str(decimalToBinary(4,negMode = "ignore")))
 	for x in range(20):
-		print(decimalToBinary(x+1))
-
+		print(-x+1,": "+str(decimalToBinary(-x+1,negMode = "signMagnitude")))
 
 	# v addBasedNumbers demo v
 	#print(addBasedNumbers("1110","1000",base=2,overflow=True))
