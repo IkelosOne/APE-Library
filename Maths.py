@@ -178,10 +178,12 @@ def addBasedNumbers(number1,number2,base,overflow = True):
 			for z in range(x+1):
 				addition += "0"
 			answer = list(Formatting.arrayToString(addBasedNumbers(Formatting.arrayToString(answer),addition,2)))
-			#answer[length-x-1] = digit # This somehow destroys the overflow. Might be useful later on
+
 		else:
 			#answer = str(answer)[:-x-1] + str(digit) + str(answer)[-x-0:]
 			answer[length-x-1] = str(digit)
+	if len(answer) > length and overflow == False:
+		answer = answer[1:] # Assumes only one digit must be removed as this is what is expected
 	return answer
 
 
@@ -208,6 +210,6 @@ if __name__ == "__main__":
 	for x in range(20):
 		print(decimalToBinary(x+1))
 	"""
-	print(addBasedNumbers("1110","1000",base=2))
+	print(addBasedNumbers("1110","1000",base=2,overflow=True))
 
 	None
