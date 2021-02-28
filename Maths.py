@@ -27,7 +27,7 @@ def calculateFromString(equationString):
 		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^": # Deals with pesky operators (minus is the worst)
 			if (equationString[x] == "-" and x == 0) or (equationString[x] == "-" and (equationString[x - 1] == "+" or equationString[x-1] == "*" or equationString[x-1] == "/" or equationString[x-1] == "^")):  # Handles negative numbers
 				for i in range(x + 1, len(equationString)):
-					if Formatting.isType(equationString[i], "int") == False and equationString[i] != ".":  # Keeps going until the number ends and there is an operator
+					if (Formatting.isType(equationString[i], "int") == False and equationString[i] != ".") or (i+1 == len(equationString)):  # Keeps going until the number ends and there is an operator or until it gets to the end
 						try:
 							numberList.append(float(equationString[x:i]))
 							x = i - 1
@@ -116,7 +116,7 @@ def decimalToBinary(decimal,negMode = "ignore"):
 				return compliment(1,2)
 			else:
 				return "01"
-	binDigits = round(math.log2(decimal)+0.51) # Rounds up to find the numebr of digits
+	binDigits = simpleRound(math.log2(decimal)+0.5) # Rounds up to find the numebr of digits
 	for x in range(binDigits):
 		i = binDigits-x-1
 		if 2**(i) <= remaing:
@@ -232,6 +232,6 @@ if __name__ == "__main__":
 		print(-x+1,": "+str(decimalToBinary(-x+1,negMode = "signMagnitude")))
 	"""
 
-	print(simpleRound(3.24,0.5))
+	print(decimalToBinary(2.5))
 
 	None
