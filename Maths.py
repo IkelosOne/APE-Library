@@ -209,6 +209,14 @@ def compliment(number,base):
 
 	return lesserCompliment + 1
 
+def simpleRound(number,unit = 1):
+	"""Rounds in a simple manner. Not bankers round"""
+
+	number += unit/2
+	if (number % unit) - number >= unit/2:
+		return (number // unit) * unit + unit
+	else:
+		return (number // unit) * unit
 
 
 
@@ -216,13 +224,14 @@ if __name__ == "__main__":
 	"""Use the space below for testing. Any code here will not run when the file is imported as a
 	module. Delete it once you're finished testing."""
 
-
 	#print(calculateFromString("2+(3-(5*4))"))
 	#print(4,": "+str(decimalToBinary(4,negMode = "ignore")))
+
+	"""
 	for x in range(20):
 		print(-x+1,": "+str(decimalToBinary(-x+1,negMode = "signMagnitude")))
+	"""
 
-	# v addBasedNumbers demo v
-	#print(addBasedNumbers("1110","1000",base=2,overflow=True))
+	print(simpleRound(3.24,0.5))
 
 	None
