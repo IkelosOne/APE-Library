@@ -40,16 +40,16 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 	terry.up()
 
 	# Draws X axis
-	print(equationArray.get_startX())
-	print(equationArray.get_endX())
+	print("Start X:",equationArray.get_startX())
+	print("End X:",equationArray.get_endX())
 	terry.goto(convertCoords(equationArray.get_startX()*gapWidth,0))
 	terry.down()
 	terry.goto(convertCoords(equationArray.get_endX()*gapWidth,0))
 	terry.up()
 
 	# Draws Y axis
-	print(Formatting.getMinValue(array))
-	print(Formatting.getMaxValue(array))
+	print("Start Y:",Formatting.getMinValue(array))
+	print("End Y:",Formatting.getMaxValue(array))
 	terry.goto(convertCoords(0,Formatting.getMinValue(array)*unitHeight))
 	terry.down()
 	terry.goto(convertCoords(0,Formatting.getMaxValue(array)*unitHeight))
@@ -58,6 +58,7 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 	terry.goto(convertCoords(0,0))
 	for x in range(len(array)):
 		coords = convertCoords(x*gapWidth,int(array[x])*unitHeight)
+		print("Goes to coords :",x*gapWidth,",",int(array[x])*unitHeight)
 		terry.goto(coords[0],coords[1])
 		terry.down()
 	terry.up()
@@ -84,7 +85,7 @@ def convertCoords(xCoord,yCoord):
 	global originScreenCoords
 
 
-	coords = [(-screenWidth/2) + marginWidth + originScreenCoords[0] + xCoord,(-screenHeight/2) + marginHeight + originScreenCoords[1] + yCoord]
+	coords = [(-screenWidth/2)+marginWidth+originScreenCoords[0]+xCoord , (-screenHeight/2)+marginHeight+originScreenCoords[1]+yCoord]
 	return coords
 
 def setOriginPosition(position):
@@ -127,7 +128,7 @@ if __name__ == "__main__":
 
 
 	#equationObject = EquationArray.EquationArray("x^2+3*x-2",-10,10)
-	equationObject = EquationArray.EquationArray("x",-10,10)
+	equationObject = EquationArray.EquationArray("x-5",-10,10)
 	equationObject.set_resolution(20)
 	setOriginPosition("c")
 	plotGraph(equationObject)
