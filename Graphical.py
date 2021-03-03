@@ -58,7 +58,7 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 	terry.goto(convertCoords(0,0))
 	for x in range(len(array)):
 		coords = convertCoords(x*gapWidth,int(array[x])*unitHeight)
-		print("Goes to coords :",x*gapWidth,",",int(array[x])*unitHeight)
+		print("Goes to coords :",x,",",int(array[x]))
 		terry.goto(coords[0],coords[1])
 		terry.down()
 	terry.up()
@@ -128,8 +128,8 @@ if __name__ == "__main__":
 
 
 	#equationObject = EquationArray.EquationArray("x^2+3*x-2",-10,10)
-	equationObject = EquationArray.EquationArray("x-5",-10,10)
-	equationObject.set_resolution(20)
+	equationObject = EquationArray.EquationArray("x",-5,5)
+	equationObject.set_resolution(10)
 	setOriginPosition("c")
 	plotGraph(equationObject)
 

@@ -116,7 +116,7 @@ def decimalToBinary(decimal,negMode = "ignore"):
 				return compliment(1,2)
 			else:
 				return "01"
-	binDigits = simpleRound(math.log2(decimal)+0.5) # Rounds up to find the numebr of digits
+	binDigits = int(simpleRound(math.log2(decimal)+0.5)) # Rounds up to find the numebr of digits
 	for x in range(binDigits):
 		i = binDigits-x-1
 		if 2**(i) <= remaing:
@@ -210,7 +210,7 @@ def compliment(number,base):
 	return lesserCompliment + 1
 
 def simpleRound(number,unit = 1):
-	"""Rounds in a simple manner. Not bankers round"""
+	"""Rounds in a simple manner, returning a float. Not bankers round"""
 
 	number += unit/2
 	if (number % unit) - number >= unit/2:
@@ -232,6 +232,6 @@ if __name__ == "__main__":
 		print(-x+1,": "+str(decimalToBinary(-x+1,negMode = "signMagnitude")))
 	"""
 
-	print(decimalToBinary(2.5))
+	print(decimalToBinary(20))
 
 	None
