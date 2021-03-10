@@ -55,9 +55,9 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 	terry.goto(convertCoords(0,Formatting.getMaxValue(array)*unitHeight))
 	terry.up()
 
-	terry.goto(convertCoords(0,0))
+	# Draws graph
 	for x in range(len(array)):
-		coords = convertCoords(x*gapWidth,int(array[x])*unitHeight)
+		coords = convertCoords((equationArray.get_startX()+x)*gapWidth,int(array[x])*unitHeight)
 		print("Goes to coords :",x,",",int(array[x]))
 		terry.goto(coords[0],coords[1])
 		terry.down()
