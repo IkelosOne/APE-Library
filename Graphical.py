@@ -129,7 +129,7 @@ if __name__ == "__main__":
 
 	#equationObject = EquationArray.EquationArray("x^2+3*x-2",-10,10)
 	equationObject = EquationArray.EquationArray("x^2",-5,5)
-	equationObject.set_resolution(20)
+	equationObject.set_resolution(10)
 	setOriginPosition("c")
 	plotGraph(equationObject)
 

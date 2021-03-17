@@ -5,7 +5,7 @@ import math
 
 
 def calculateFromString(equationString):
-	"""Uses reccursion to break down an equation to its smallest calculations"""
+	"""Uses reccursion to break down an equation to its smallest calculations (V2)"""
 
 	numberList = []
 	operatorList = []

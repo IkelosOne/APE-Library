@@ -4,7 +4,7 @@
 
 import sys
 sys.path.append("S:\Documents\GitHub\APE-Library")
-import APEFunctions
+import StandardFunctions as APEFunctions
 
 def IntToWord(integer, mode = "Standard"):
 	unitsDict = {0:"",1:"One",2:"Two",3:"Three",4:"Four",5:"Five",6:"Six",7:"Seven",8:"Eight",9:"Nine"}
@@ -142,3 +142,7 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 
 	print(PrintArray([[11,12,13,14],[21,22,23,24],[31,32,33,34],[41,42,43,44]],mode = "default"))
+	print(PrintArray([[11,12,13,14],[21,22,23,24],[31,32,33,34],[41,42,43,44]],mode = "clean"))
+	print(PrintArray([[11,12,13,14],[21,22,23,24],[31,32,33,34],[41,42,43,44]],mode = "compact"))
+
+	# We only ahve the best lookiong arrays here
