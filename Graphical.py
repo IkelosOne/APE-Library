@@ -57,8 +57,8 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 
 	# Draws graph
 	for x in range(len(array)):
-		coords = convertCoords((equationArray.get_startX()+x)*gapWidth,int(array[x])*unitHeight)
-		print("Goes to coords :",x,",",int(array[x]))
+		coords = convertCoords((equationArray.get_startX()+x),array[x],gapWidth,unitHeight)
+		print("Goes to coords :",equationArray.get_startX()+x,",",array[x])
 		terry.goto(coords[0],coords[1])
 		terry.down()
 	terry.up()
@@ -75,7 +75,7 @@ def plotGraph(equationArray): # Draws a graph from the given EquationArray objec
 	#screen.mainloop()
 
 
-def convertCoords(xCoord,yCoord):
+def convertCoords(xCoord,yCoord,xGap = 1,yGap = 1):
 	# Starts the coords 0,0 from bottom left, taking into account the given global margin variables
 	# Will add an option to let 0,0 be the center as this will be useful
 	global screenWidth
@@ -85,7 +85,7 @@ def convertCoords(xCoord,yCoord):
 	global originScreenCoords
 
 
-	coords = [(-screenWidth/2)+marginWidth+originScreenCoords[0]+xCoord , (-screenHeight/2)+marginHeight+originScreenCoords[1]+yCoord]
+	coords = [(-screenWidth/2)+marginWidth+originScreenCoords[0]+(xCoord*xGap) , (-screenHeight/2)+marginHeight+originScreenCoords[1]+(yCoord*yGap)]
 	return coords
 
 def setOriginPosition(position):
@@ -128,8 +128,8 @@ if __name__ == "__main__":
 
 
 	#equationObject = EquationArray.EquationArray("x^2+3*x-2",-10,10)
-	equationObject = EquationArray.EquationArray("x",-5,5)
-	equationObject.set_resolution(10)
+	equationObject = EquationArray.EquationArray("x^2",-5,5)
+	equationObject.set_resolution(20)
 	setOriginPosition("c")
 	plotGraph(equationObject)
 

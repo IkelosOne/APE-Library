@@ -21,7 +21,7 @@ class EquationArray():
 		graphRange = max - min
 		gapWidth = graphRange/self.resolution
 		self.array = []
-		for i in range(round(self.resolution)):
+		for i in range(round(self.resolution)+1):
 			x = min + gapWidth*i
 			equationString = re.sub("x",str(x),self.formulaString)
 			answer = Maths.calculateFromString(equationString)
