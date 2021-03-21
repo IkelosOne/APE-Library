@@ -39,6 +39,7 @@ import APEFunctions
 - 2D Graphical display for graphs
 - Binary and decimal conversion (possibly works with any base)
 - Add pip instal functionality?
+- Make Horner's conversion method and test against the standard toDecimal method
 - Delete ToDo.txt
 
 # Notes
