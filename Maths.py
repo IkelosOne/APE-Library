@@ -21,7 +21,7 @@ def calculateFromString(equationString):
 		if equationString[x] == "(": # Deals with pesky brackets
 			for i in range(x, len(equationString)):
 				if equationString[i] == ")":
-					numberList.append(calculateFromString2(equationString[x + 1:i]))  # Will send whats inside the bracket to get processed
+					numberList.append(calculateFromString(equationString[x + 1:i]))  # Will send whats inside the bracket to get processed
 					break
 			x = i  # Stops doing everything else in the bracket as it will be done in the reccursion
 		elif equationString[x] == "+" or equationString[x] == "-" or equationString[x] == "*" or equationString[x] == "/" or equationString[x] == "^": # Deals with pesky operators (minus is the worst)
