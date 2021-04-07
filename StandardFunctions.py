@@ -398,8 +398,8 @@ if __name__ == "__main__":
 	t1 = time.time()
 	"""
 	t0 = time.time()
-	for aruns in range(10000): # Takes 0.01465 seconds on average (6 runs)
-		HCFMinus(3395410,2913732)
+	for aruns in range(1): # Takes 0.01465 seconds on average (6 runs)
+		print(HCFMinus(375171, 411580))
 	t1 = time.time()
 	print("Time required:", t1 - t0)
 
