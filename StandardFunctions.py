@@ -324,7 +324,8 @@ def EuclideanAlgorithm(b, a):
 
 	Arun I think you already programmed this above, so now we have to race our algorithms to the
 	death...
-	Pablo, I would if mine worked. I'll need to fix it up soon for uni"""
+	Pablo, I would if mine worked. I'll need to fix it up soon for uni
+	Ok Fixed it ..."""
 
 	if a == 0 or b == 0:
 		if a == 0 and b == 0:
@@ -364,7 +365,9 @@ def BezoutCoefficients(a, b):
 
 def Gamma(a):
 	"""Gamma function, the generalised factorial. The function Γ such that Γ(α + 1) = αΓ(α). Takes
-	any real number greater than 0."""
+	any real number greater than 0.
+	:rtype int
+	"""
 
 	if a > 1:
 		return (a - 1) * Gamma(a - 1)
@@ -375,7 +378,9 @@ def Factorial2(n):
 	"""Mathematical factorial function. Works the same as the usual approach, but it uses the Gamma
 	function. Mathematically pleasing. Gauss-approved. Takes an integer n >= 0.
 
-	Note: Gamma(1/2)**2 should equal pi - I don't think it works for non-integers."""
+	Note: Gamma(1/2)**2 should equal pi - I don't think it works for non-integers.
+	:rtype int
+	"""
 
 	return Gamma(n + 1)
 
@@ -385,24 +390,25 @@ if __name__ == "__main__":
 	module. Delete it once you're finished testing."""
 	import time
 
-	"""
 	t0 = time.time()
-	for aruns in range(10000): # Takes 0.01465 seconds on average (6 runs)
-		HCFEuclid(3395410,2913732)
+	for aruns in range(100000): # Takes 0.01465 seconds on average (6 runs)
+		HCFEuclid(3395410, 2913732)
+	print(HCFEuclid(3395410, 2913732))
 	t1 = time.time()
-	print("Time required:", t1 - t0)
+	print("Time required for Arun's method:", t1 - t0)
 
 	t0 = time.time()
-	for pablos in range(10000): # Takes 0.02770 seconds on average (6 runs)
-		EuclideanAlgorithm(3395410,2913732)
+	for pablos in range(100000): # Takes 0.02770 seconds on average (6 runs)
+		EuclideanAlgorithm(3395410, 2913732)
+	print(EuclideanAlgorithm(3395410, 2913732))
 	t1 = time.time()
-	"""
+	print("Time required for Pablo's old? method:", t1 - t0)
+
 	t0 = time.time()
-	for aruns in range(1): # Takes 0.01465 seconds on average (6 runs)
-		print(HCFMinus(375171, 411580))
+	for pablos2 in range(100000): # Takes 0.01465 seconds on average (6 runs)
+		HCFMinus(3395410, 2913732)
+	print(HCFMinus(3395410, 2913732))
 	t1 = time.time()
-	print("Time required:", t1 - t0)
+	print("Time required for Pablo's new method:", t1 - t0)
 
 	# Conclusion: Arun's algorithm is 89% faster? No idea why as the logic is the same
-
-	print("Time required:", t1 - t0)
