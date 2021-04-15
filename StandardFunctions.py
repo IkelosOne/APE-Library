@@ -312,7 +312,7 @@ def HCFMinus(a, b):
 		a = b
 		b = r
 
-		return(HCFMinus(a,b))
+		return(HCFMinus(a, b))
 	else:
 		return a
 	return a
@@ -391,24 +391,7 @@ if __name__ == "__main__":
 	import time
 
 	t0 = time.time()
-	for aruns in range(100000): # Takes 0.01465 seconds on average (6 runs)
-		HCFEuclid(3395410, 2913732)
-	print(HCFEuclid(3395410, 2913732))
+	for x in range(100000):
+		IsPrime(x)
 	t1 = time.time()
-	print("Time required for Arun's method:", t1 - t0)
-
-	t0 = time.time()
-	for pablos in range(100000): # Takes 0.02770 seconds on average (6 runs)
-		EuclideanAlgorithm(3395410, 2913732)
-	print(EuclideanAlgorithm(3395410, 2913732))
-	t1 = time.time()
-	print("Time required for Pablo's old? method:", t1 - t0)
-
-	t0 = time.time()
-	for pablos2 in range(100000): # Takes 0.01465 seconds on average (6 runs)
-		HCFMinus(3395410, 2913732)
-	print(HCFMinus(3395410, 2913732))
-	t1 = time.time()
-	print("Time required for Pablo's new method:", t1 - t0)
-
-	# Conclusion: Arun's algorithm is 89% faster? No idea why as the logic is the same
+	print("Time:", t1 - t0)

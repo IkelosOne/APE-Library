@@ -1,7 +1,10 @@
-def check_brackets():
+def is_bracket_balanced():
 	"""Takes a number of lines of code and validates the number of opened and closed brackets.
 	This is the program I said I made with that uni student years ago...
-	When you were boasting about how clever you were? xd Also this will be very useful for the calculator"""
+	When you were boasting about how clever you were? xd Also this will be very useful for the
+	calculator.
+
+	rtype: bool"""
 
 	a = int(input("How many lines would you like to check?\n"))
 	for x in range(a):
@@ -17,9 +20,9 @@ def check_brackets():
 				#print("+1 from", var[i])
 
 	if sum(bracketCount.values()) == 0 and -1 not in list(bracketCount.values()):
-		print("Balanced")
+		return True
 	else:
-		print("Unbalanced")
+		return False
 
 def GetInteger(inputMin, inputMax, inputMessage):
 	"""Called when integer input is required, checks input according to parameters.
